@@ -1,6 +1,6 @@
 # AEROSCRIPT
 
-![CICD Workflow status](https://github.com/TommyChangUMD/ENPM700-final-project-boilerplate/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/TommyChangUMD/ENPM700-final-project-boilerplate/branch/main/graph/badge.svg)](https://codecov.io/gh/TommyChangUMD/ENPM700-final-project-boilerplate) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![CICD Workflow status](https://github.com/siddhant-code/AeroScript/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/siddhant-code/AeroScript/branch/main/graph/badge.svg)](https://codecov.io/gh/siddhant-code/AeroScript) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
@@ -21,6 +21,11 @@ This project implements a **Model-View-Controller (MVC)** architecture for coord
 - **Comprehensive testing** - Unit tests and integration tests with code coverage
 - **Webots simulation** - Physics-based simulation environment
 
+
+## Authors
+
+- Venkata Madhav Tadavarthi (121058768)
+- Siddhant Deshmukh (121322463)
 
 ## Prerequisites
 
@@ -56,7 +61,7 @@ sudo apt install -y \
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/siddhant-code/Aeroscript.git
 cd draft_aero/ros2_ws_src/aeroscript
 ```
 
