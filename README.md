@@ -24,8 +24,32 @@ This project implements a **Model-View-Controller (MVC)** architecture for coord
 
 ## Authors
 
-- Venkata Madhav Tadavarthi (121058768)
+- Venkata Madhav Tadavarthi (121058768) 
 - Siddhant Deshmukh (121322463)
+
+### Pair Programming
+
+This project is conducted through three phases (Phase 0,1,2) and it involves Pair Programming among the two authors. 
+
+### Phase-0:
+
+[Proposal Documentation](https://drive.google.com/file/d/1hZJovaxEVNSvBYXMtduy1OFAVqnx_SSC/view?usp=sharing)
+
+### Phase-1:
+
+For Model & Controller scripts:
+
+- Siddhant (Driver), Madhav (Navigator)
+
+For UML, Unit Tests and Integration tests:
+
+- Madhav (Driver), Siddhant (Navigator)
+
+#### Deliverables:
+
+[Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
+[Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
+[Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
 
 ## Prerequisites
 
