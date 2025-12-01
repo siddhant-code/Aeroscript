@@ -1,0 +1,14 @@
+launch:
+  
+# start talker
+- node:
+    pkg: "drone_controller"
+    exec: "talker"
+    name: "talker"
+
+# start listener
+- node:
+    pkg: "drone_controller"
+    exec: "listener"
+    name: "listener"
+

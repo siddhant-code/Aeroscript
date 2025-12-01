@@ -1,0 +1,35 @@
+launch:
+
+################################################
+# 1.) tag: catch2_launch_file  (required)
+################################################
+- catch2_launch_file:
+    description: 'A Catch2 integration test launch file for subscriber node'
+
+################################################
+# 2.) launch arguments
+################################################
+- arg:
+    name: 'test_duration'
+    default: '5.0'
+    description: 'Max length of test in seconds.'
+
+################################################
+# 3.) Auxiliary nodes (i.e, nodes under test)
+################################################
+# start listener (subscriber node under test)
+- node:
+    pkg: "drone_controller"        # A package you want to test
+    exec: "listener"              # An executable in the package
+
+############################################################################
+# 4.) tag: catch2_integration_test_node (i.e., node which performs the test)
+############################################################################
+- catch2_integration_test_node:
+    pkg: "drone_controller"
+    exec: "subscriber_integration_test"
+    param:
+    -
+      name: 'test_duration'
+      value: '$(var test_duration)'
+
