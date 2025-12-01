@@ -47,9 +47,9 @@ For UML, Unit Tests and Integration tests:
 
 #### Deliverables:
 
-[Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
-[Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
-[Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+- [Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
+- [Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
+- [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
 
 ## Prerequisites
 
