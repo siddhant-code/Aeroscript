@@ -74,6 +74,7 @@ jobs:
           sudo mkdir -p /etc/apt/keyrings
           sudo wget -O /etc/apt/keyrings/kitware-archive-keyring.gpg \
             https://apt.kitware.com/keys/kitware-archive-latest.asc
+          sudo chmod 644 /etc/apt/keyrings/kitware-archive-keyring.gpg
 
       - name: Add Kitware APT repo
         run: |
