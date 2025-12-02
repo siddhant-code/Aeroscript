@@ -66,20 +66,24 @@ jobs:
           source /opt/ros/humble/setup.bash
           sudo apt install -y ros-${ROS_DISTRO}-catch-ros2
 
-      - name: Install dependencies
+      - name: Install wget
+        run: sudo apt-get update && sudo apt-get install -y wget
+
+      - name: Add Kitware APT key
+        run: |
+          sudo mkdir -p /etc/apt/keyrings
+          sudo wget -O /etc/apt/keyrings/kitware-archive-keyring.gpg \
+            https://apt.kitware.com/keys/kitware-archive-latest.asc
+
+      - name: Add Kitware APT repo
+        run: |
+          echo 'deb [signed-by=/etc/apt/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | \
+            sudo tee /etc/apt/sources.list.d/kitware.list
+
+      - name: Install newer CMake
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget
-
-      - name: Install newer CMake (3.26+)
-        run: |
-          sudo apt update
-          sudo apt install -y apt-transport-https ca-certificates gnupg
-          sudo mkdir -p /etc/apt/keyrings
-          sudo wget -O /etc/apt/keyrings/kitware-archive-keyring.gpg https://apt.kitware.com/keys/kitware-archive-latest.asc
-          echo 'deb [signed-by=/etc/apt/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | sudo tee /etc/apt/sources.list.d/kitware.list
-          sudo apt update
-          sudo apt install -y cmake
+          sudo apt-get install -y cmake
 
       - name: Install RVO3D dependency
         run: |
