@@ -1,0 +1,71 @@
+@startuml Sequence Diagram
+!theme plain
+
+actor User
+participant "Launch File\n(robot_launch.py)" as Launch
+participant "Webots\nSimulator" as Webots
+participant "MavicDriver\n(Python)" as Driver
+participant "ROS2 Topics" as Topics
+participant "MinimalSubscriber\n(drone_controller)" as Controller
+participant "Orchestrator\n(RVO)" as Orchestrator
+
+User -> Launch: ros2 launch mavic_simulation robot_launch.py
+Launch -> Launch: Generate world file with N drones
+Launch -> Webots: Start simulation
+Launch -> Driver: Initialize MavicDriver for each drone
+
+loop For each drone
+    Driver -> Topics: Subscribe to /Mavic_2_PRO_{ID}/cmd_vel
+    Driver -> Topics: Publish GPS data to /Mavic_2_PRO_{ID}/gps
+    Driver -> Topics: Publish velocity to /Mavic_2_PRO_{ID}/gps/speed_vector
+end
+
+User -> Controller: Start drone_controller node
+Controller -> Controller: Initialize Orchestrator with initial positions
+Controller -> Controller: Load letter goals from CSV
+Controller -> Topics: Subscribe to GPS topics for all drones
+Controller -> Topics: Subscribe to velocity topics for all drones
+Controller -> Topics: Create publishers for cmd_vel topics
+
+== Main Control Loop ==
+
+loop Every 8ms (timer callback)
+    Topics -> Controller: GPS position updates (PointStamped)
+    Topics -> Controller: Velocity updates (Vector3)
+    
+    Controller -> Controller: Update drone_positions_ and drone_velocities_
+    Controller -> Orchestrator: setWebotDronePositionsAndVelocities(positions, velocities)
+    Controller -> Orchestrator: setWebotDroneGoals(goals)
+    Controller -> Orchestrator: getNewVelocities()
+    
+    activate Orchestrator
+    Orchestrator -> Orchestrator: setWebotPrefferedVelocities()
+    Orchestrator -> Orchestrator: Calculate preferred velocities toward goals
+    Orchestrator -> Orchestrator: simulator.doStep() (RVO collision avoidance)
+    Orchestrator -> Orchestrator: Get new velocities from simulator
+    Orchestrator --> Controller: Return new_velocities
+    deactivate Orchestrator
+    
+    Controller -> Controller: Check if reachedGoals()
+    
+    alt All drones reached goals
+        Controller -> Controller: Stop all drones (publish zero velocity)
+        Controller -> Controller: Load next letter from queue
+        alt More letters in queue
+            Controller -> Controller: Load goals for next letter
+            Controller -> Orchestrator: setWebotDroneGoals(new_goals)
+        else No more letters
+            Controller -> Controller: Complete
+        end
+    else Not at goals
+        Controller -> Topics: Publish Twist messages to cmd_vel topics
+        Topics -> Driver: Receive cmd_vel commands
+        Driver -> Driver: Update target_twist
+        Driver -> Webots: Apply control to propellers
+        Webots -> Driver: Update sensor readings (GPS, IMU, Gyro)
+        Driver -> Topics: Publish updated GPS and velocity
+    end
+end
+
+@enduml
+

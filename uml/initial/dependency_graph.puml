@@ -1,0 +1,84 @@
+@startuml Dependency Graph
+!theme plain
+
+package "External Dependencies" {
+  [RVO3D Library] as RVO
+  [ROS2 Humble] as ROS2
+  [OpenCV] as OCV
+  [GoogleTest] as GTEST
+  [Webots] as WEBOTS
+  [Python 3] as PYTHON
+  [CMake] as CMAKE
+}
+
+package "drone_orchestrator" {
+  [orchestrator.hpp] as ORCH_H
+  [orchestrator.cpp] as ORCH_C
+  [my_dummy_lib_funct2.hpp] as DUMMY_H
+  [my_dummy_lib_funct2.cpp] as DUMMY_C
+  [test.cpp] as TEST_CPP
+}
+
+package "drone_controller" {
+  [subscriber_member_function.cpp] as SUB_CPP
+  [publisher_member_function.cpp] as PUB_CPP
+  [integration_test.cpp] as INT_TEST
+}
+
+package "mavic_simulation" {
+  [mavic_driver.py] as DRIVER_PY
+  [robot_launch.py] as LAUNCH_PY
+  [mavic_webots.urdf] as URDF
+}
+
+' Orchestrator dependencies
+ORCH_H --> RVO
+ORCH_C --> ORCH_H
+ORCH_C --> RVO
+DUMMY_C --> ORCH_H
+TEST_CPP --> ORCH_H
+TEST_CPP --> DUMMY_H
+TEST_CPP --> GTEST
+
+' Controller dependencies
+SUB_CPP --> ROS2
+SUB_CPP --> ORCH_H
+PUB_CPP --> ROS2
+PUB_CPP --> DUMMY_H
+INT_TEST --> ROS2
+INT_TEST --> GTEST
+
+' Simulation dependencies
+DRIVER_PY --> ROS2
+DRIVER_PY --> PYTHON
+DRIVER_PY --> WEBOTS
+LAUNCH_PY --> ROS2
+LAUNCH_PY --> PYTHON
+URDF --> WEBOTS
+
+' Package dependencies
+[drone_controller] --> [drone_orchestrator]
+[drone_orchestrator] --> RVO
+[drone_orchestrator] --> ROS2
+[drone_orchestrator] --> OCV
+[drone_controller] --> ROS2
+[mavic_simulation] --> ROS2
+[mavic_simulation] --> WEBOTS
+
+note right of [drone_orchestrator]
+  Stand-alone C++ library
+  Can be built independently
+end note
+
+note right of [drone_controller]
+  ROS2 package
+  Depends on drone_orchestrator
+end note
+
+note right of [mavic_simulation]
+  ROS2 Python package
+  Webots simulation environment
+end note
+
+@enduml
+

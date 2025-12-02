@@ -1,0 +1,83 @@
+@startuml Component Diagram
+!theme plain
+
+package "Build System" {
+  component [CMake] as CMAKE
+  component [colcon] as COLCON
+}
+
+package "drone_orchestrator" {
+  component [Orchestrator Library] as ORCH_LIB
+  interface "Orchestrator API" as ORCH_API
+  component [Unit Tests] as ORCH_TEST
+}
+
+package "drone_controller" {
+  component [Subscriber Node] as SUB_NODE
+  component [Publisher Node] as PUB_NODE
+  component [Integration Tests] as INT_TEST
+}
+
+package "mavic_simulation" {
+  component [MavicDriver] as DRIVER
+  component [Launch File] as LAUNCH
+  component [URDF Model] as URDF
+}
+
+package "ROS2 Infrastructure" {
+  component [ROS2 DDS] as DDS
+  database "Topics" {
+    [GPS Topics] as GPS_TOPIC
+    [Velocity Topics] as VEL_TOPIC
+    [Command Topics] as CMD_TOPIC
+  }
+}
+
+package "Simulation" {
+  component [Webots] as WEBOTS
+}
+
+ORCH_LIB ..> ORCH_API : provides
+SUB_NODE --> ORCH_API : uses
+SUB_NODE --> GPS_TOPIC : subscribes
+SUB_NODE --> VEL_TOPIC : subscribes
+SUB_NODE --> CMD_TOPIC : publishes
+DRIVER --> CMD_TOPIC : subscribes
+DRIVER --> GPS_TOPIC : publishes
+DRIVER --> VEL_TOPIC : publishes
+DRIVER --> WEBOTS : controls
+LAUNCH --> DRIVER : launches
+LAUNCH --> WEBOTS : launches
+URDF --> WEBOTS : defines model
+
+ORCH_TEST --> ORCH_LIB : tests
+INT_TEST --> SUB_NODE : tests
+INT_TEST --> PUB_NODE : tests
+
+CMAKE --> ORCH_LIB : builds
+COLCON --> SUB_NODE : builds
+COLCON --> DRIVER : builds
+
+DDS --> GPS_TOPIC : manages
+DDS --> VEL_TOPIC : manages
+DDS --> CMD_TOPIC : manages
+
+note right of ORCH_LIB
+  Stand-alone C++ library
+  Uses RVO3D for path planning
+end note
+
+note right of SUB_NODE
+  Main control node
+  Coordinates multiple drones
+  Handles letter writing sequence
+end note
+
+note right of DRIVER
+  Webots plugin
+  Controls individual drone
+  Reads sensors, controls propellers
+end note
+
+@enduml
+
