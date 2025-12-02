@@ -68,7 +68,7 @@ jobs:
 
       - name: Install RVO3D dependency
         run: |
-          git clone git clone https://github.com/snape/RVO2-3D.git
+          git clone https://github.com/snape/RVO2-3D.git
           cd RVO2-3D
           mkdir build && cd build
           cmake ..
