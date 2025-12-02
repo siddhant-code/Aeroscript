@@ -4,6 +4,25 @@
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Authors](#authors)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Building the Project](#building-the-project)
+- [Running the System](#running-the-system)
+- [Testing](#testing)
+- [Code Coverage Reports](#code-coverage-reports)
+- [Documentation](#documentation)
+- [Project Structure](#project-structure)
+- [Package Dependencies](#package-dependencies)
+- [Troubleshooting](#troubleshooting)
+- [Continuous Integration](#continuous-integration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 ## Overview
 
 This project implements a **Model-View-Controller (MVC)** architecture for coordinating multiple drones in a Webots simulation environment:
@@ -20,7 +39,6 @@ This project implements a **Model-View-Controller (MVC)** architecture for coord
 - **ROS2 integration** - Full ROS2 Humble support with topic-based communication
 - **Comprehensive testing** - Unit tests and integration tests with code coverage
 - **Webots simulation** - Physics-based simulation environment
-
 
 ## Authors
 
@@ -378,13 +396,6 @@ This project includes GitHub Actions CI/CD that:
 - Builds in a ROS2 Humble container
 
 See `.github/workflows/run-unit-test-and-upload-codecov.yml` for details.
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Ensure all tests pass: `colcon test`
-4. Submit a pull request
 
 ## License
 
