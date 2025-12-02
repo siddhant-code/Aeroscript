@@ -297,7 +297,7 @@ This generates Doxygen documentation for all packages.
 
 ### View UML Diagrams
 
-UML diagrams are available in `src/uml/` directory. To regenerate:
+UML diagrams are available in `uml/` directory. To regenerate:
 
 ```bash
 cd src/uml
@@ -310,6 +310,12 @@ Available diagrams:
 - Sequence Diagram
 - Activity Diagram
 - Dependency Graph
+
+![Class UML](./uml/initial/Class%20Diagram.png)
+![Activity UML](./uml/initial/Activity%20Diagram.png)
+![Sequence UML](./uml/initial/Sequence%20Diagram.png)
+![Component UML](./uml/initial/Component%20Diagram.png)
+![Dependency UML](./uml/initial/Dependency%20Graph.png)
 
 ### Generate Dependency Graph
 
