@@ -8,6 +8,8 @@ A ROS2-based multi-drone coordination system that enables multiple drones to col
 
 - [Overview](#overview)
 - [Authors](#authors)
+  - [Phase0](#phase-0)
+  - [Phase1](#phase-1)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Building the Project](#building-the-project)
