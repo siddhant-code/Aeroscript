@@ -70,7 +70,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y wget
 
       - name: Install GoogleTest (GTest + GMock)
-      run: |
+        run: |
         sudo apt update
         sudo apt install -y libgmock-dev
 
