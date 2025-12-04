@@ -65,8 +65,8 @@ TEST_CASE_METHOD (MyTestsFixture, "test topic talker", "[topic]") {
   struct ListenerCallback {
     ListenerCallback(bool &gotTopic) : gotTopic_(gotTopic)
     {}
-    void operator()(const String msg) const {
-      RCLCPP_INFO_STREAM (Logger, "I heard:" << msg.data.c_str());
+    void operator()(const String::SharedPtr msg) const {
+      RCLCPP_INFO_STREAM (Logger, "I heard:" << msg->data.c_str());
       gotTopic_ = true;
     }
     bool &gotTopic_;
@@ -84,6 +84,9 @@ TEST_CASE_METHOD (MyTestsFixture, "test topic talker", "[topic]") {
   auto timeout    = rclcpp::Duration::from_seconds (TEST_DURATION);
   RCLCPP_INFO_STREAM (Logger, "duration = " << duration.seconds() <<
                       " timeout=" << timeout.seconds());
+
+  rclcpp::sleep_for(100ms);
+  
   while (!got_topic && (duration < timeout))
     {
       rclcpp::spin_some (testerNode);
