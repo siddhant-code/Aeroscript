@@ -26,6 +26,7 @@
 #include <sstream>
 #include <cctype>
 #include <queue>
+#include <ament_index_cpp/get_package_share_directory.hpp>
 
 
 using std::placeholders::_1;
@@ -96,7 +97,23 @@ public:
         letter = std::toupper(letter);
         letters_queue_.push(letter);
     }
-    goals = getGoalsForLetter(letters_queue_.front(), "src/drone_controller/src/letters_AZ_cad.csv");
+
+    this->declare_parameter("csv_file", "");
+    std::string csv_path_param = this->get_parameter("csv_file").as_string();
+
+    std::string csv_path;
+    if (csv_path_param.empty()) {
+        // Fallback to installed location (for safety)
+        std::string pkg_share_dir =
+            ament_index_cpp::get_package_share_directory("drone_controller");
+        csv_path = pkg_share_dir + "/config/letters_AZ_cad.csv";
+    } else {
+        // Use the provided parameter
+        csv_path = csv_path_param;
+    }
+
+    goals = getGoalsForLetter(letters_queue_.front(), csv_path);
+
     letters_queue_.pop();
     orchestrator_.setWebotDroneGoals(goals);
     for (int idx = 0; idx < numSubs; idx++)
@@ -159,7 +176,20 @@ private:
                   char next_letter = letters_queue_.front();
                   letters_queue_.pop();
                   RCLCPP_INFO(this->get_logger(), "Setting new letter goals: '%c'", next_letter);
-                  goals = getGoalsForLetter(next_letter, "src/drone_controller/src/letters_AZ_cad.csv");
+
+                  // Reuse the same csv_path from constructor
+                  std::string csv_path;
+                  std::string csv_path_param = this->get_parameter("csv_file").as_string();
+                  if (csv_path_param.empty()) {
+                      std::string pkg_share_dir =
+                          ament_index_cpp::get_package_share_directory("drone_controller");
+                      csv_path = pkg_share_dir + "/config/letters_AZ_cad.csv";
+                  } else {
+                      csv_path = csv_path_param;
+                  }
+
+                  goals = getGoalsForLetter(letters_queue_.front(), csv_path);
+
                   orchestrator_.setWebotDroneGoals(goals);
               }
         return;
