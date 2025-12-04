@@ -71,8 +71,8 @@ jobs:
 
       - name: Install GoogleTest (GTest + GMock)
         run: |
-        sudo apt update
-        sudo apt install -y libgmock-dev
+          sudo apt update
+          sudo apt install -y libgmock-dev
 
       - name: Install CMake 3.29 from source
         run: |
