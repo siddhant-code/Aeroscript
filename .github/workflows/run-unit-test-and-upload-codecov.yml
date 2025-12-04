@@ -69,29 +69,10 @@ jobs:
       - name: Install wget
         run: sudo apt-get update && sudo apt-get install -y wget
 
-      - name: Add Kitware APT key
+      - name: Install newer CMake
         run: |
-          sudo mkdir -p /etc/apt/keyrings
-          sudo wget -O /etc/apt/keyrings/kitware-archive-keyring.gpg \
-            https://apt.kitware.com/keys/kitware-archive-latest.asc
-          sudo chmod 644 /etc/apt/keyrings/kitware-archive-keyring.gpg
-
-      - name: Add Kitware APT repo
-        run: |
-          echo 'deb [signed-by=/etc/apt/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | \
-            sudo tee /etc/apt/sources.list.d/kitware.list
-
-      - name: Install CMake 3.29 from source
-        run: |
-          sudo apt update
-          sudo apt install -y build-essential libssl-dev
-          wget https://github.com/Kitware/CMake/releases/download/v3.29.6/cmake-3.29.6.tar.gz
-          tar -xzf cmake-3.29.6.tar.gz
-          cd cmake-3.29.6
-          ./bootstrap
-          make -j$(nproc)
-          sudo make install
-          cmake --version
+          sudo apt-get update
+          sudo apt-get install -y cmake
 
       - name: Install RVO3D dependency
         run: |
