@@ -69,17 +69,10 @@ jobs:
       - name: Install wget
         run: sudo apt-get update && sudo apt-get install -y wget
 
-      - name: Add Kitware APT key
-        run: |
-          sudo mkdir -p /etc/apt/keyrings
-          sudo wget -O /etc/apt/keyrings/kitware-archive-keyring.gpg \
-            https://apt.kitware.com/keys/kitware-archive-latest.asc
-          sudo chmod 644 /etc/apt/keyrings/kitware-archive-keyring.gpg
-
-      - name: Add Kitware APT repo
-        run: |
-          echo 'deb [signed-by=/etc/apt/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | \
-            sudo tee /etc/apt/sources.list.d/kitware.list
+      - name: Install GoogleTest (GTest + GMock)
+      run: |
+        sudo apt update
+        sudo apt install -y libgmock-dev
 
       - name: Install CMake 3.29 from source
         run: |
