@@ -81,10 +81,17 @@ jobs:
           echo 'deb [signed-by=/etc/apt/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | \
             sudo tee /etc/apt/sources.list.d/kitware.list
 
-      - name: Install newer CMake
+      - name: Install CMake 3.29 from source
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake
+          sudo apt update
+          sudo apt install -y build-essential libssl-dev
+          wget https://github.com/Kitware/CMake/releases/download/v3.29.6/cmake-3.29.6.tar.gz
+          tar -xzf cmake-3.29.6.tar.gz
+          cd cmake-3.29.6
+          ./bootstrap
+          make -j$(nproc)
+          sudo make install
+          cmake --version
 
       - name: Install RVO3D dependency
         run: |
