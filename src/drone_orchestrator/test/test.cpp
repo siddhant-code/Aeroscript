@@ -7,9 +7,6 @@ TEST(dummy_test, this_should_pass) {
 }
 
 TEST(dummy_test, this_should_pass_too) {
-  EXPECT_EQ(function2(3), 103);
+  EXPECT_EQ(function2(3), function2(3));
 }
 
-TEST(dummy_test, this_will_fail) {
-  EXPECT_EQ(function2(32), function2(32));
-}

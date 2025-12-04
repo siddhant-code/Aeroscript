@@ -140,6 +140,13 @@ TEST_F(OrchestratorTest, SingleDroneInitialization) {
     Orchestrator single_orch(single_pos);
     
     EXPECT_NEAR(single_orch.getWebotDronePosition(0).x(), 0.0f, 0.01f);
+    
+    // Set goals before calling getNewVelocities() - this is required!
+    std::vector<RVO::Vector3> goals = {
+        RVO::Vector3(1.0f, 0.0f, 10.0f)
+    };
+    single_orch.setWebotDroneGoals(goals);
+    
     EXPECT_EQ(single_orch.getNewVelocities().size(), 1);
 }
 
