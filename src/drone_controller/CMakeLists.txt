@@ -14,6 +14,8 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(Doxygen REQUIRED)    # add doxygen support
 find_package(drone_orchestrator REQUIRED)   # add drone_orchestrator
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 find_package(RVO3D REQUIRED)
 
 ###################################################
@@ -47,11 +49,13 @@ if(BUILD_TESTING)
   # New subscriber integration test
   add_executable(subscriber_integration_test
     test/subscriber_integration_test.cpp)
+  
   ament_target_dependencies(subscriber_integration_test
     rclcpp
     std_msgs
     geometry_msgs
     RVO3D)
+  
   target_link_libraries(subscriber_integration_test
     catch_ros2::catch_ros2_with_node_main
     drone_orchestrator)
@@ -152,6 +156,12 @@ install(TARGETS
   subscriber_integration_test
   helper_functions_test
   DESTINATION lib/${PROJECT_NAME})
+
+install(
+  DIRECTORY config/
+  DESTINATION share/${PROJECT_NAME}/config
+)
+
 
 # install launch files
 install(DIRECTORY

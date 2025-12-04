@@ -53,6 +53,14 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
         10
     );
     
+    // Wait for publishers to be ready
+    rclcpp::sleep_for(500ms);
+    rclcpp::spin_some(tester_node);
+    
+    // Wait for listener node to initialize (give it time even if it will crash)
+    rclcpp::sleep_for(2000ms);
+    rclcpp::spin_some(tester_node);
+    
     // Publish test data
     geometry_msgs::msg::PointStamped pos_msg;
     pos_msg.header.frame_id = "world";
@@ -65,6 +73,15 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
     vel_msg.x = 0.0;
     vel_msg.y = 0.0;
     vel_msg.z = 0.0;
+    
+    // Publish initial messages to wake up the listener
+    for (int i = 0; i < 10; ++i) {
+        pos_msg.header.stamp = tester_node->now();
+        pos_publisher->publish(pos_msg);
+        vel_publisher->publish(vel_msg);
+        rclcpp::spin_some(tester_node);
+        rclcpp::sleep_for(10ms);
+    }
     
     rclcpp::Rate rate(125.0);  // 125 Hz (8ms period)
     auto start_time = rclcpp::Clock().now();
@@ -84,6 +101,15 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
     rclcpp::spin_some(tester_node);
     
     // Verify that velocity commands were published
+    // If node crashed due to missing CSV, provide helpful message
+    if (received_velocities.size() == 0) {
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "No velocity commands received. Listener node may have crashed.");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Check if CSV file exists at: src/drone_controller/src/letters_AZ_cad.csv");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Working directory should be set to workspace root in launch file.");
+    }
     CHECK(received_velocities.size() > 0);
     
     // Verify velocity values are reasonable
@@ -134,6 +160,36 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
         ));
     }
     
+    // Wait for publishers to be ready
+    rclcpp::sleep_for(500ms);
+    rclcpp::spin_some(tester_node);
+    
+    // Wait for listener node to initialize (give it time even if it will crash)
+    rclcpp::sleep_for(2000ms);
+    rclcpp::spin_some(tester_node);
+    
+    // Publish initial messages to wake up the listener
+    for (int i = 0; i < 10; ++i) {
+        for (int j = 0; j < num_drones; ++j) {
+            geometry_msgs::msg::PointStamped pos_msg;
+            pos_msg.header.frame_id = "world";
+            pos_msg.header.stamp = tester_node->now();
+            pos_msg.point.x = j * 1.0;
+            pos_msg.point.y = 0.0;
+            pos_msg.point.z = 10.0;
+            
+            geometry_msgs::msg::Vector3 vel_msg;
+            vel_msg.x = 0.0;
+            vel_msg.y = 0.0;
+            vel_msg.z = 0.0;
+            
+            pos_pubs[j]->publish(pos_msg);
+            vel_pubs[j]->publish(vel_msg);
+        }
+        rclcpp::spin_some(tester_node);
+        rclcpp::sleep_for(10ms);
+    }
+    
     // Publish test data for all drones
     rclcpp::Rate rate(125.0);
     auto start_time = rclcpp::Clock().now();
@@ -166,6 +222,21 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
     rclcpp::spin_some(tester_node);
     
     // Verify all drones received velocity commands
+    // If node crashed due to missing CSV, provide helpful message
+    bool any_received = false;
+    for (int i = 0; i < num_drones; ++i) {
+        if (received_velocities[i].size() > 0) {
+            any_received = true;
+        }
+    }
+    if (!any_received) {
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "No velocity commands received for any drone. Listener node may have crashed.");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Check if CSV file exists at: src/drone_controller/src/letters_AZ_cad.csv");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Working directory should be set to workspace root in launch file.");
+    }
     for (int i = 0; i < num_drones; ++i) {
         CHECK(received_velocities[i].size() > 0);
     }
@@ -195,6 +266,14 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
         10
     );
     
+    // Wait for publishers to be ready
+    rclcpp::sleep_for(500ms);
+    rclcpp::spin_some(tester_node);
+    
+    // Wait for listener node to initialize (give it time even if it will crash)
+    rclcpp::sleep_for(2000ms);
+    rclcpp::spin_some(tester_node);
+    
     geometry_msgs::msg::PointStamped pos_msg;
     pos_msg.header.frame_id = "world";
     pos_msg.point.x = 0.0;
@@ -205,6 +284,15 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
     vel_msg.x = 0.0;
     vel_msg.y = 0.0;
     vel_msg.z = 0.0;
+    
+    // Publish initial messages to wake up the listener
+    for (int i = 0; i < 10; ++i) {
+        pos_msg.header.stamp = tester_node->now();
+        pos_publisher->publish(pos_msg);
+        vel_publisher->publish(vel_msg);
+        rclcpp::spin_some(tester_node);
+        rclcpp::sleep_for(10ms);
+    }
     
     rclcpp::Rate rate(125.0);
     auto start_time = rclcpp::Clock().now();
@@ -223,6 +311,15 @@ TEST_CASE_METHOD(SubscriberIntegrationTestFixture,
     rclcpp::spin_some(tester_node);
     
     // Should receive multiple messages
+    // If node crashed due to missing CSV, provide helpful message
+    if (received_times.size() == 0) {
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "No velocity commands received. Listener node may have crashed.");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Check if CSV file exists at: src/drone_controller/src/letters_AZ_cad.csv");
+        RCLCPP_WARN(tester_node->get_logger(), 
+                   "Working directory should be set to workspace root in launch file.");
+    }
     CHECK(received_times.size() > 10);
     
     // Calculate average frequency
