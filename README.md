@@ -4,6 +4,12 @@
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
+
+https://github.com/user-attachments/assets/7ad5e0e5-fb3a-4d3d-b3e5-acac6c22b7f8
+
+
+
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -25,7 +31,10 @@ A ROS2-based multi-drone coordination system that enables multiple drones to col
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
+
 ## Overview
+
+
 
 This project implements a **Model-View-Controller (MVC)** architecture for coordinating multiple drones in a Webots simulation environment:
 
