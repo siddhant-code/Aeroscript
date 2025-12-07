@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['numsubs_95',['numSubs',['../classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8',1,'MinimalSubscriber']]]
+  ['orchestrator_5f_86',['orchestrator_',['../classDroneManager.html#a273d4e5c4d43a925fb67036aac9ac525',1,'DroneManager']]]
 ];

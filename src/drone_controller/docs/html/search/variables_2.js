@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['goals_92',['goals',['../classMinimalSubscriber.html#af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4',1,'MinimalSubscriber']]]
+  ['letters_5fqueue_5f_83',['letters_queue_',['../classDroneManager.html#a0da265bee1ce2cba51046ce3a62c1a05',1,'DroneManager']]],
+  ['logger_84',['Logger',['../integration__test_8cpp.html#a5f73b9fde550249158f88f4cfc33c7a1',1,'integration_test.cpp']]]
 ];

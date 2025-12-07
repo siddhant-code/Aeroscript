@@ -1,7 +1,7 @@
 <map id="MinimalSubscriber::MinimalSubscriber" name="MinimalSubscriber::MinimalSubscriber">
 <area shape="rect" id="node1" title=" " alt="" coords="5,62,156,103"/>
-<area shape="rect" id="node2" href="$subscriber__member__function_8cpp.html#a8aef35940ec838f06683fb2b74904570" title=" " alt="" coords="403,40,541,66"/>
-<area shape="rect" id="node3" href="$classMinimalSubscriber.html#ac2c10f32b49fc74494fb90c5d5f5c917" title=" " alt="" coords="204,28,355,70"/>
-<area shape="rect" id="node4" href="$classMinimalSubscriber.html#a2b041c84afc47c9a986c2d01629c7116" title=" " alt="" coords="204,94,355,135"/>
-<area shape="rect" id="node5" href="$classMinimalSubscriber.html#acb152c71155e211c20dc580045b64222" title=" " alt="" coords="204,159,355,200"/>
+<area shape="rect" id="node2" href="$dji__mavic__controller_8cpp.html#a8d4392dbcad259ea0442c3354b35e0be" title="Get the Goals For Letter object." alt="" coords="403,40,543,66"/>
+<area shape="rect" id="node3" href="$classMinimalSubscriber.html#acb5b064a46ea162b5c7052841f5f31a8" title="Callback function for drone position updates." alt="" coords="204,28,355,70"/>
+<area shape="rect" id="node4" href="$classMinimalSubscriber.html#afd8cf40536c37726f44e631ab333d04d" title="Timer callback to update drone control commands." alt="" coords="204,94,355,135"/>
+<area shape="rect" id="node5" href="$classMinimalSubscriber.html#ac191ee793912929ce9967a0c6357b3a4" title="Callback function for drone velocity updates." alt="" coords="204,159,355,200"/>
 </map>

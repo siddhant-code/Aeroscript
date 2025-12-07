@@ -69,94 +69,95 @@ $(function() {
 <div class="title">test_utils.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="test__utils_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;geometry_msgs/msg/point_stamped.hpp&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;geometry_msgs/msg/vector3.hpp&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;std_msgs/msg/header.hpp&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;RVO.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespacetest__utils.html">   10</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacetest__utils.html">test_utils</a> {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// Helper to create test positions</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">   13</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">createTestPositions</a>(<span class="keywordtype">int</span> num_drones, <span class="keywordtype">float</span> spacing = 1.0f) {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::vector&lt;RVO::Vector3&gt; positions;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_drones; ++i) {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        positions.push_back(RVO::Vector3(i * spacing, 0.0f, 10.0f));</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> positions;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// Helper to create test goals</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">   22</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">createTestGoals</a>(<span class="keywordtype">int</span> num_drones, <span class="keywordtype">float</span> offset = 5.0f) {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::vector&lt;RVO::Vector3&gt; goals;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_drones; ++i) {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        goals.push_back(RVO::Vector3(i * 1.0f + offset, 0.0f, 10.0f));</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> goals;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// Helper to convert RVO::Vector3 to PointStamped</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">   31</a></span>&#160;<span class="keyword">inline</span> geometry_msgs::msg::PointStamped <a class="code" href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">toPointStamped</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos, <span class="keywordtype">int</span> drone_id = 0) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    geometry_msgs::msg::PointStamped msg;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    msg.header.frame_id = <span class="stringliteral">&quot;world&quot;</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    msg.header.stamp.sec = 0;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    msg.header.stamp.nanosec = 0;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    msg.point.x = pos.x();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    msg.point.y = pos.y();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    msg.point.z = pos.z();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> msg;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// Helper to convert RVO::Vector3 to Vector3 message</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">   43</a></span>&#160;<span class="keyword">inline</span> geometry_msgs::msg::Vector3 <a class="code" href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">toVector3Msg</a>(<span class="keyword">const</span> RVO::Vector3&amp; vel) {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    geometry_msgs::msg::Vector3 msg;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    msg.x = vel.x();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    msg.y = vel.y();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    msg.z = vel.z();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> msg;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// Helper to check if positions are close</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">   52</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">positionsClose</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos1, <span class="keyword">const</span> RVO::Vector3&amp; pos2, <span class="keywordtype">float</span> threshold = 0.5f) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">float</span> dx = pos1.x() - pos2.x();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">float</span> dy = pos1.y() - pos2.y();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">float</span> dz = pos1.z() - pos2.z();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a> = std::sqrt(dx * dx + dy * dy + dz * dz);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a> &lt;= threshold;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// Helper to calculate distance between two positions</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">   61</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos1, <span class="keyword">const</span> RVO::Vector3&amp; pos2) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">float</span> dx = pos1.x() - pos2.x();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">float</span> dy = pos1.y() - pos2.y();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">float</span> dz = pos1.z() - pos2.z();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> std::sqrt(dx * dx + dy * dy + dz * dz);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Helper to create a grid of positions</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">   69</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">createGridPositions</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">float</span> spacing = 1.0f) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::vector&lt;RVO::Vector3&gt; positions;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row = 0; row &lt; rows; ++row) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> col = 0; col &lt; cols; ++col) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            positions.push_back(RVO::Vector3(col * spacing, row * spacing, 10.0f));</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> positions;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// namespace test_utils</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="ttc" id="anamespacetest__utils_html"><div class="ttname"><a href="namespacetest__utils.html">test_utils</a></div><div class="ttdef"><b>Definition:</b> test_utils.hpp:10</div></div>
-<div class="ttc" id="anamespacetest__utils_html_a640ca69900e0257858761de3e80c3f1e"><div class="ttname"><a href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">test_utils::toVector3Msg</a></div><div class="ttdeci">geometry_msgs::msg::Vector3 toVector3Msg(const RVO::Vector3 &amp;vel)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:43</div></div>
-<div class="ttc" id="anamespacetest__utils_html_a7ddfdec332bc6420dc0c446fe518d148"><div class="ttname"><a href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">test_utils::positionsClose</a></div><div class="ttdeci">bool positionsClose(const RVO::Vector3 &amp;pos1, const RVO::Vector3 &amp;pos2, float threshold=0.5f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:52</div></div>
-<div class="ttc" id="anamespacetest__utils_html_aca10b6b5a004ab0b761da6d289bf69e5"><div class="ttname"><a href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">test_utils::createGridPositions</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createGridPositions(int rows, int cols, float spacing=1.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:69</div></div>
-<div class="ttc" id="anamespacetest__utils_html_acd10983e20991076207a351baac1e811"><div class="ttname"><a href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">test_utils::toPointStamped</a></div><div class="ttdeci">geometry_msgs::msg::PointStamped toPointStamped(const RVO::Vector3 &amp;pos, int drone_id=0)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:31</div></div>
-<div class="ttc" id="anamespacetest__utils_html_af00069abec2fe1ca5ad9f43ea69e694c"><div class="ttname"><a href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">test_utils::distance</a></div><div class="ttdeci">float distance(const RVO::Vector3 &amp;pos1, const RVO::Vector3 &amp;pos2)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:61</div></div>
-<div class="ttc" id="anamespacetest__utils_html_af49abe860381fbd96d003fbc67845d13"><div class="ttname"><a href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">test_utils::createTestPositions</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createTestPositions(int num_drones, float spacing=1.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:13</div></div>
-<div class="ttc" id="anamespacetest__utils_html_afc42be902291c293db9275fca374ab11"><div class="ttname"><a href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">test_utils::createTestGoals</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createTestGoals(int num_drones, float offset=5.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:22</div></div>
+<a href="test__utils_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;geometry_msgs/msg/point_stamped.hpp&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;geometry_msgs/msg/vector3.hpp&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;std_msgs/msg/header.hpp&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;RVO.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespacetest__utils.html">   20</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacetest__utils.html">test_utils</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// Helper to create test positions</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">   23</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">createTestPositions</a>(<span class="keywordtype">int</span> num_drones, <span class="keywordtype">float</span> spacing = 1.0f) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::vector&lt;RVO::Vector3&gt; positions;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_drones; ++i) {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        positions.push_back(RVO::Vector3(i * spacing, 0.0f, 10.0f));</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> positions;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Helper to create test goals</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">   32</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">createTestGoals</a>(<span class="keywordtype">int</span> num_drones, <span class="keywordtype">float</span> offset = 5.0f) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::vector&lt;RVO::Vector3&gt; goals;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_drones; ++i) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        goals.push_back(RVO::Vector3(i * 1.0f + offset, 0.0f, 10.0f));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">return</span> goals;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Helper to convert RVO::Vector3 to PointStamped</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">   41</a></span>&#160;<span class="keyword">inline</span> geometry_msgs::msg::PointStamped <a class="code" href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">toPointStamped</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos, <span class="keywordtype">int</span> drone_id = 0) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    geometry_msgs::msg::PointStamped msg;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    msg.header.frame_id = <span class="stringliteral">&quot;world&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    msg.header.stamp.sec = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    msg.header.stamp.nanosec = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    msg.point.x = pos.x();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    msg.point.y = pos.y();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    msg.point.z = pos.z();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// Helper to convert RVO::Vector3 to Vector3 message</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">   53</a></span>&#160;<span class="keyword">inline</span> geometry_msgs::msg::Vector3 <a class="code" href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">toVector3Msg</a>(<span class="keyword">const</span> RVO::Vector3&amp; vel) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    geometry_msgs::msg::Vector3 msg;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    msg.x = vel.x();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    msg.y = vel.y();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    msg.z = vel.z();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// Helper to check if positions are close</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">   62</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">positionsClose</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos1, <span class="keyword">const</span> RVO::Vector3&amp; pos2, <span class="keywordtype">float</span> threshold = 0.5f) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">float</span> dx = pos1.x() - pos2.x();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">float</span> dy = pos1.y() - pos2.y();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">float</span> dz = pos1.z() - pos2.z();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a> = std::sqrt(dx * dx + dy * dy + dz * dz);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a> &lt;= threshold;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// Helper to calculate distance between two positions</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">   71</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">distance</a>(<span class="keyword">const</span> RVO::Vector3&amp; pos1, <span class="keyword">const</span> RVO::Vector3&amp; pos2) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">float</span> dx = pos1.x() - pos2.x();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> dy = pos1.y() - pos2.y();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">float</span> dz = pos1.z() - pos2.z();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> std::sqrt(dx * dx + dy * dy + dz * dz);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// Helper to create a grid of positions</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">   79</a></span>&#160;<span class="keyword">inline</span> std::vector&lt;RVO::Vector3&gt; <a class="code" href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">createGridPositions</a>(<span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols, <span class="keywordtype">float</span> spacing = 1.0f) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::vector&lt;RVO::Vector3&gt; positions;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row = 0; row &lt; rows; ++row) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> col = 0; col &lt; cols; ++col) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            positions.push_back(RVO::Vector3(col * spacing, row * spacing, 10.0f));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> positions;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;} <span class="comment">// namespace test_utils</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="ttc" id="anamespacetest__utils_html"><div class="ttname"><a href="namespacetest__utils.html">test_utils</a></div><div class="ttdef"><b>Definition:</b> test_utils.hpp:20</div></div>
+<div class="ttc" id="anamespacetest__utils_html_a640ca69900e0257858761de3e80c3f1e"><div class="ttname"><a href="namespacetest__utils.html#a640ca69900e0257858761de3e80c3f1e">test_utils::toVector3Msg</a></div><div class="ttdeci">geometry_msgs::msg::Vector3 toVector3Msg(const RVO::Vector3 &amp;vel)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:53</div></div>
+<div class="ttc" id="anamespacetest__utils_html_a7ddfdec332bc6420dc0c446fe518d148"><div class="ttname"><a href="namespacetest__utils.html#a7ddfdec332bc6420dc0c446fe518d148">test_utils::positionsClose</a></div><div class="ttdeci">bool positionsClose(const RVO::Vector3 &amp;pos1, const RVO::Vector3 &amp;pos2, float threshold=0.5f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:62</div></div>
+<div class="ttc" id="anamespacetest__utils_html_aca10b6b5a004ab0b761da6d289bf69e5"><div class="ttname"><a href="namespacetest__utils.html#aca10b6b5a004ab0b761da6d289bf69e5">test_utils::createGridPositions</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createGridPositions(int rows, int cols, float spacing=1.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:79</div></div>
+<div class="ttc" id="anamespacetest__utils_html_acd10983e20991076207a351baac1e811"><div class="ttname"><a href="namespacetest__utils.html#acd10983e20991076207a351baac1e811">test_utils::toPointStamped</a></div><div class="ttdeci">geometry_msgs::msg::PointStamped toPointStamped(const RVO::Vector3 &amp;pos, int drone_id=0)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:41</div></div>
+<div class="ttc" id="anamespacetest__utils_html_af00069abec2fe1ca5ad9f43ea69e694c"><div class="ttname"><a href="namespacetest__utils.html#af00069abec2fe1ca5ad9f43ea69e694c">test_utils::distance</a></div><div class="ttdeci">float distance(const RVO::Vector3 &amp;pos1, const RVO::Vector3 &amp;pos2)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:71</div></div>
+<div class="ttc" id="anamespacetest__utils_html_af49abe860381fbd96d003fbc67845d13"><div class="ttname"><a href="namespacetest__utils.html#af49abe860381fbd96d003fbc67845d13">test_utils::createTestPositions</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createTestPositions(int num_drones, float spacing=1.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:23</div></div>
+<div class="ttc" id="anamespacetest__utils_html_afc42be902291c293db9275fca374ab11"><div class="ttname"><a href="namespacetest__utils.html#afc42be902291c293db9275fca374ab11">test_utils::createTestGoals</a></div><div class="ttdeci">std::vector&lt; RVO::Vector3 &gt; createTestGoals(int num_drones, float offset=5.0f)</div><div class="ttdef"><b>Definition:</b> test_utils.hpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,5 @@
+<map id="GetGoalsForLetter" name="GetGoalsForLetter">
+<area shape="rect" id="node1" title="Get the Goals For Letter object." alt="" coords="544,5,684,32"/>
+<area shape="rect" id="node2" href="$classDroneManager.html#aec864cf3cda1b9b61351338ffdbf5a6d" title=" " alt="" coords="5,5,228,32"/>
+<area shape="rect" id="node3" href="$classDroneManager.html#a39783d5140afe30c4da2f42d4a23e2e9" title="Timer callback to update drone control commands." alt="" coords="276,31,496,57"/>
+</map>

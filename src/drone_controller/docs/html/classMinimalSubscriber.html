@@ -70,12 +70,15 @@ $(function() {
 <div class="title">MinimalSubscriber Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Minimal Subscriber class to manage drone positions and velocities.  
+ <a href="classMinimalSubscriber.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MinimalSubscriber:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMinimalSubscriber__inherit__graph.png" border="0" usemap="#aMinimalSubscriber_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMinimalSubscriber_inherit__map" id="aMinimalSubscriber_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,131,176,384"/>
+<area shape="rect" title="Minimal Subscriber class to manage drone positions and velocities." alt="" coords="5,131,176,384"/>
 <area shape="rect" title=" " alt="" coords="39,5,142,83"/>
 </map>
 </div>
@@ -84,7 +87,7 @@ Collaboration diagram for MinimalSubscriber:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMinimalSubscriber__coll__graph.png" border="0" usemap="#aMinimalSubscriber_coll__map" alt="Collaboration graph"/></div>
 <map name="aMinimalSubscriber_coll__map" id="aMinimalSubscriber_coll__map">
-<area shape="rect" title=" " alt="" coords="735,469,903,591"/>
+<area shape="rect" title="Minimal Subscriber class to manage drone positions and velocities." alt="" coords="735,469,903,591"/>
 <area shape="rect" title=" " alt="" coords="5,285,108,363"/>
 <area shape="rect" title=" " alt="" coords="132,285,357,363"/>
 <area shape="rect" title=" " alt="" coords="100,145,227,223"/>
@@ -111,37 +114,52 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ac2c10f32b49fc74494fb90c5d5f5c917"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#ac2c10f32b49fc74494fb90c5d5f5c917">position_callback</a> (const geometry_msgs::msg::PointStamped &amp;msg, int idx)</td></tr>
-<tr class="separator:ac2c10f32b49fc74494fb90c5d5f5c917"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb152c71155e211c20dc580045b64222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#acb152c71155e211c20dc580045b64222">velocity_callback</a> (const geometry_msgs::msg::Vector3 &amp;msg, int idx)</td></tr>
-<tr class="separator:acb152c71155e211c20dc580045b64222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b041c84afc47c9a986c2d01629c7116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a2b041c84afc47c9a986c2d01629c7116">timer_callback</a> ()</td></tr>
-<tr class="separator:a2b041c84afc47c9a986c2d01629c7116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb5b064a46ea162b5c7052841f5f31a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#acb5b064a46ea162b5c7052841f5f31a8">PositionCallback</a> (const geometry_msgs::msg::PointStamped &amp;msg, int idx)</td></tr>
+<tr class="memdesc:acb5b064a46ea162b5c7052841f5f31a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for drone position updates.  <a href="classMinimalSubscriber.html#acb5b064a46ea162b5c7052841f5f31a8">More...</a><br /></td></tr>
+<tr class="separator:acb5b064a46ea162b5c7052841f5f31a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac191ee793912929ce9967a0c6357b3a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#ac191ee793912929ce9967a0c6357b3a4">VelocityCallback</a> (const geometry_msgs::msg::Vector3 &amp;msg, int idx)</td></tr>
+<tr class="memdesc:ac191ee793912929ce9967a0c6357b3a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for drone velocity updates.  <a href="classMinimalSubscriber.html#ac191ee793912929ce9967a0c6357b3a4">More...</a><br /></td></tr>
+<tr class="separator:ac191ee793912929ce9967a0c6357b3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8cf40536c37726f44e631ab333d04d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#afd8cf40536c37726f44e631ab333d04d">TimerCallback</a> ()</td></tr>
+<tr class="memdesc:afd8cf40536c37726f44e631ab333d04d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer callback to update drone control commands.  <a href="classMinimalSubscriber.html#afd8cf40536c37726f44e631ab333d04d">More...</a><br /></td></tr>
+<tr class="separator:afd8cf40536c37726f44e631ab333d04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a6f0522e433977ef2bdf4d170c957a6e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a> = 20</td></tr>
-<tr class="separator:a6f0522e433977ef2bdf4d170c957a6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef7dfc2b155cb661dc4803eb89ed37b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="subscriber__member__function_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a5ef7dfc2b155cb661dc4803eb89ed37b">position_subscribers_</a> = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td></tr>
+<tr class="memitem:a2b2e49d66a9cec333f5439c08be7818b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a> = 20</td></tr>
+<tr class="memdesc:a2b2e49d66a9cec333f5439c08be7818b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of drones being controlled.  <a href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">More...</a><br /></td></tr>
+<tr class="separator:a2b2e49d66a9cec333f5439c08be7818b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef7dfc2b155cb661dc4803eb89ed37b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="dji__mavic__controller_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a5ef7dfc2b155cb661dc4803eb89ed37b">position_subscribers_</a></td></tr>
+<tr class="memdesc:a5ef7dfc2b155cb661dc4803eb89ed37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribers for drone positions.  <a href="classMinimalSubscriber.html#a5ef7dfc2b155cb661dc4803eb89ed37b">More...</a><br /></td></tr>
 <tr class="separator:a5ef7dfc2b155cb661dc4803eb89ed37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12dcafeecf64918c4da42176d5b21348"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="subscriber__member__function_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a12dcafeecf64918c4da42176d5b21348">velocity_subscribers_</a> = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td></tr>
+<tr class="memitem:a12dcafeecf64918c4da42176d5b21348"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="dji__mavic__controller_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a12dcafeecf64918c4da42176d5b21348">velocity_subscribers_</a></td></tr>
+<tr class="memdesc:a12dcafeecf64918c4da42176d5b21348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribers for drone velocities.  <a href="classMinimalSubscriber.html#a12dcafeecf64918c4da42176d5b21348">More...</a><br /></td></tr>
 <tr class="separator:a12dcafeecf64918c4da42176d5b21348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3977f7c1dee8673d174b0aa47ab0b13"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#ab3977f7c1dee8673d174b0aa47ab0b13">drone_positions_</a> = std::vector&lt;RVO::Vector3&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td></tr>
+<tr class="memitem:ab3977f7c1dee8673d174b0aa47ab0b13"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#ab3977f7c1dee8673d174b0aa47ab0b13">drone_positions_</a></td></tr>
+<tr class="memdesc:ab3977f7c1dee8673d174b0aa47ab0b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions of the drones.  <a href="classMinimalSubscriber.html#ab3977f7c1dee8673d174b0aa47ab0b13">More...</a><br /></td></tr>
 <tr class="separator:ab3977f7c1dee8673d174b0aa47ab0b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7764d1e986cafd61a98fba7d43cf9070"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a7764d1e986cafd61a98fba7d43cf9070">drone_velocities_</a> = std::vector&lt;RVO::Vector3&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td></tr>
+<tr class="memitem:a7764d1e986cafd61a98fba7d43cf9070"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a7764d1e986cafd61a98fba7d43cf9070">drone_velocities_</a></td></tr>
+<tr class="memdesc:a7764d1e986cafd61a98fba7d43cf9070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocities of the drones.  <a href="classMinimalSubscriber.html#a7764d1e986cafd61a98fba7d43cf9070">More...</a><br /></td></tr>
 <tr class="separator:a7764d1e986cafd61a98fba7d43cf9070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af67ecbbe152a71a412cfa7399e0b6ab9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="subscriber__member__function_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#af67ecbbe152a71a412cfa7399e0b6ab9">velocity_publishers_</a> = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td></tr>
+<tr class="memitem:af67ecbbe152a71a412cfa7399e0b6ab9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="dji__mavic__controller_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#af67ecbbe152a71a412cfa7399e0b6ab9">velocity_publishers_</a></td></tr>
+<tr class="memdesc:af67ecbbe152a71a412cfa7399e0b6ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishers for drone velocity commands.  <a href="classMinimalSubscriber.html#af67ecbbe152a71a412cfa7399e0b6ab9">More...</a><br /></td></tr>
 <tr class="separator:af67ecbbe152a71a412cfa7399e0b6ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cec5db1fc225d59dee252f5ce05c1b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="publisher__member__function_8cpp.html#a59fbe15a44ccf259bfb94512a32d2a84">TIMER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a1cec5db1fc225d59dee252f5ce05c1b8">timer_</a></td></tr>
+<tr class="memitem:a1cec5db1fc225d59dee252f5ce05c1b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dji__mavic__controller_8cpp.html#a59fbe15a44ccf259bfb94512a32d2a84">TIMER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a1cec5db1fc225d59dee252f5ce05c1b8">timer_</a></td></tr>
+<tr class="memdesc:a1cec5db1fc225d59dee252f5ce05c1b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer for periodic updates.  <a href="classMinimalSubscriber.html#a1cec5db1fc225d59dee252f5ce05c1b8">More...</a><br /></td></tr>
 <tr class="separator:a1cec5db1fc225d59dee252f5ce05c1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b15da8ae8d346a4b7d3cda8b6efd957"><td class="memItemLeft" align="right" valign="top">Orchestrator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a4b15da8ae8d346a4b7d3cda8b6efd957">orchestrator_</a> = Orchestrator(<a class="el" href="classMinimalSubscriber.html#ab3977f7c1dee8673d174b0aa47ab0b13">drone_positions_</a>)</td></tr>
+<tr class="memdesc:a4b15da8ae8d346a4b7d3cda8b6efd957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Orchestrator instance for managing drone coordination.  <a href="classMinimalSubscriber.html#a4b15da8ae8d346a4b7d3cda8b6efd957">More...</a><br /></td></tr>
 <tr class="separator:a4b15da8ae8d346a4b7d3cda8b6efd957"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3871968c6974e3ba1bb879c6ec3c465"><td class="memItemLeft" align="right" valign="top">std::queue&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#af3871968c6974e3ba1bb879c6ec3c465">letters_queue_</a></td></tr>
+<tr class="memdesc:af3871968c6974e3ba1bb879c6ec3c465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue of letters to write.  <a href="classMinimalSubscriber.html#af3871968c6974e3ba1bb879c6ec3c465">More...</a><br /></td></tr>
 <tr class="separator:af3871968c6974e3ba1bb879c6ec3c465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4">goals</a></td></tr>
-<tr class="separator:af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28382a622520fe9eae0649e398a98f3e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMinimalSubscriber.html#a28382a622520fe9eae0649e398a98f3e">goals_</a></td></tr>
+<tr class="memdesc:a28382a622520fe9eae0649e398a98f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current goals for the drones.  <a href="classMinimalSubscriber.html#a28382a622520fe9eae0649e398a98f3e">More...</a><br /></td></tr>
+<tr class="separator:a28382a622520fe9eae0649e398a98f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Minimal Subscriber class to manage drone positions and velocities. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acc0cfcf7e2c8f60e2faefd1c08e40135"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc0cfcf7e2c8f60e2faefd1c08e40135">&#9670;&nbsp;</a></span>MinimalSubscriber()</h2>
 
@@ -170,18 +188,18 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classMinimalSubscriber_acc0cfcf7e2c8f60e2faefd1c08e40135_cgraph.png" border="0" usemap="#aclassMinimalSubscriber_acc0cfcf7e2c8f60e2faefd1c08e40135_cgraph" alt=""/></div>
 <map name="aclassMinimalSubscriber_acc0cfcf7e2c8f60e2faefd1c08e40135_cgraph" id="aclassMinimalSubscriber_acc0cfcf7e2c8f60e2faefd1c08e40135_cgraph">
 <area shape="rect" title=" " alt="" coords="5,62,156,103"/>
-<area shape="rect" href="subscriber__member__function_8cpp.html#a8aef35940ec838f06683fb2b74904570" title=" " alt="" coords="403,40,541,66"/>
-<area shape="rect" href="classMinimalSubscriber.html#ac2c10f32b49fc74494fb90c5d5f5c917" title=" " alt="" coords="204,28,355,70"/>
-<area shape="rect" href="classMinimalSubscriber.html#a2b041c84afc47c9a986c2d01629c7116" title=" " alt="" coords="204,94,355,135"/>
-<area shape="rect" href="classMinimalSubscriber.html#acb152c71155e211c20dc580045b64222" title=" " alt="" coords="204,159,355,200"/>
+<area shape="rect" href="dji__mavic__controller_8cpp.html#a8d4392dbcad259ea0442c3354b35e0be" title="Get the Goals For Letter object." alt="" coords="403,40,543,66"/>
+<area shape="rect" href="classMinimalSubscriber.html#acb5b064a46ea162b5c7052841f5f31a8" title="Callback function for drone position updates." alt="" coords="204,28,355,70"/>
+<area shape="rect" href="classMinimalSubscriber.html#afd8cf40536c37726f44e631ab333d04d" title="Timer callback to update drone control commands." alt="" coords="204,94,355,135"/>
+<area shape="rect" href="classMinimalSubscriber.html#ac191ee793912929ce9967a0c6357b3a4" title="Callback function for drone velocity updates." alt="" coords="204,159,355,200"/>
 </map>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac2c10f32b49fc74494fb90c5d5f5c917"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2c10f32b49fc74494fb90c5d5f5c917">&#9670;&nbsp;</a></span>position_callback()</h2>
+<a id="acb5b064a46ea162b5c7052841f5f31a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb5b064a46ea162b5c7052841f5f31a8">&#9670;&nbsp;</a></span>PositionCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +208,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MinimalSubscriber::position_callback </td>
+          <td class="memname">void MinimalSubscriber::PositionCallback </td>
           <td>(</td>
           <td class="paramtype">const geometry_msgs::msg::PointStamped &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
@@ -213,20 +231,29 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Callback function for drone position updates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The position message </td></tr>
+    <tr><td class="paramname">idx</td><td>The index of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMinimalSubscriber_ac2c10f32b49fc74494fb90c5d5f5c917_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_ac2c10f32b49fc74494fb90c5d5f5c917_icgraph" alt=""/></div>
-<map name="aclassMinimalSubscriber_ac2c10f32b49fc74494fb90c5d5f5c917_icgraph" id="aclassMinimalSubscriber_ac2c10f32b49fc74494fb90c5d5f5c917_icgraph">
-<area shape="rect" title=" " alt="" coords="204,5,355,47"/>
+<div class="center"><img src="classMinimalSubscriber_acb5b064a46ea162b5c7052841f5f31a8_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_acb5b064a46ea162b5c7052841f5f31a8_icgraph" alt=""/></div>
+<map name="aclassMinimalSubscriber_acb5b064a46ea162b5c7052841f5f31a8_icgraph" id="aclassMinimalSubscriber_acb5b064a46ea162b5c7052841f5f31a8_icgraph">
+<area shape="rect" title="Callback function for drone position updates." alt="" coords="204,5,355,47"/>
 <area shape="rect" href="classMinimalSubscriber.html#acc0cfcf7e2c8f60e2faefd1c08e40135" title=" " alt="" coords="5,5,156,47"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a2b041c84afc47c9a986c2d01629c7116"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b041c84afc47c9a986c2d01629c7116">&#9670;&nbsp;</a></span>timer_callback()</h2>
+<a id="afd8cf40536c37726f44e631ab333d04d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8cf40536c37726f44e631ab333d04d">&#9670;&nbsp;</a></span>TimerCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +262,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MinimalSubscriber::timer_callback </td>
+          <td class="memname">void MinimalSubscriber::TimerCallback </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -247,29 +274,31 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Timer callback to update drone control commands. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_cgraph.png" border="0" usemap="#aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_cgraph" alt=""/></div>
-<map name="aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_cgraph" id="aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,156,47"/>
-<area shape="rect" href="subscriber__member__function_8cpp.html#a8aef35940ec838f06683fb2b74904570" title=" " alt="" coords="204,13,343,39"/>
+<div class="center"><img src="classMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_cgraph.png" border="0" usemap="#aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_cgraph" alt=""/></div>
+<map name="aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_cgraph" id="aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_cgraph">
+<area shape="rect" title="Timer callback to update drone control commands." alt="" coords="5,5,156,47"/>
+<area shape="rect" href="dji__mavic__controller_8cpp.html#a8d4392dbcad259ea0442c3354b35e0be" title="Get the Goals For Letter object." alt="" coords="204,13,344,39"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_icgraph" alt=""/></div>
-<map name="aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_icgraph" id="aclassMinimalSubscriber_a2b041c84afc47c9a986c2d01629c7116_icgraph">
-<area shape="rect" title=" " alt="" coords="204,5,355,47"/>
+<div class="center"><img src="classMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_icgraph" alt=""/></div>
+<map name="aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_icgraph" id="aclassMinimalSubscriber_afd8cf40536c37726f44e631ab333d04d_icgraph">
+<area shape="rect" title="Timer callback to update drone control commands." alt="" coords="204,5,355,47"/>
 <area shape="rect" href="classMinimalSubscriber.html#acc0cfcf7e2c8f60e2faefd1c08e40135" title=" " alt="" coords="5,5,156,47"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="acb152c71155e211c20dc580045b64222"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb152c71155e211c20dc580045b64222">&#9670;&nbsp;</a></span>velocity_callback()</h2>
+<a id="ac191ee793912929ce9967a0c6357b3a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac191ee793912929ce9967a0c6357b3a4">&#9670;&nbsp;</a></span>VelocityCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +307,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MinimalSubscriber::velocity_callback </td>
+          <td class="memname">void MinimalSubscriber::VelocityCallback </td>
           <td>(</td>
           <td class="paramtype">const geometry_msgs::msg::Vector3 &amp;&#160;</td>
           <td class="paramname"><em>msg</em>, </td>
@@ -301,12 +330,21 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Callback function for drone velocity updates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The velocity message </td></tr>
+    <tr><td class="paramname">idx</td><td>The index of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classMinimalSubscriber_acb152c71155e211c20dc580045b64222_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_acb152c71155e211c20dc580045b64222_icgraph" alt=""/></div>
-<map name="aclassMinimalSubscriber_acb152c71155e211c20dc580045b64222_icgraph" id="aclassMinimalSubscriber_acb152c71155e211c20dc580045b64222_icgraph">
-<area shape="rect" title=" " alt="" coords="204,5,355,47"/>
+<div class="center"><img src="classMinimalSubscriber_ac191ee793912929ce9967a0c6357b3a4_icgraph.png" border="0" usemap="#aclassMinimalSubscriber_ac191ee793912929ce9967a0c6357b3a4_icgraph" alt=""/></div>
+<map name="aclassMinimalSubscriber_ac191ee793912929ce9967a0c6357b3a4_icgraph" id="aclassMinimalSubscriber_ac191ee793912929ce9967a0c6357b3a4_icgraph">
+<area shape="rect" title="Callback function for drone velocity updates." alt="" coords="204,5,355,47"/>
 <area shape="rect" href="classMinimalSubscriber.html#acc0cfcf7e2c8f60e2faefd1c08e40135" title=" " alt="" coords="5,5,156,47"/>
 </map>
 </div>
@@ -324,7 +362,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::drone_positions_ = std::vector&lt;RVO::Vector3&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td>
+          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::drone_positions_</td>
         </tr>
       </table>
   </td>
@@ -333,6 +371,11 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      std::vector&lt;RVO::Vector3&gt;(<a class="code" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a>)</div>
+<div class="ttc" id="aclassMinimalSubscriber_html_a2b2e49d66a9cec333f5439c08be7818b"><div class="ttname"><a href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">MinimalSubscriber::num_drones_</a></div><div class="ttdeci">int num_drones_</div><div class="ttdoc">The number of drones being controlled.</div><div class="ttdef"><b>Definition:</b> dji_mavic_controller.cpp:219</div></div>
+</div><!-- fragment -->
+<p>Positions of the drones. </p>
 
 </div>
 </div>
@@ -346,7 +389,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::drone_velocities_ = std::vector&lt;RVO::Vector3&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td>
+          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::drone_velocities_</td>
         </tr>
       </table>
   </td>
@@ -355,11 +398,15 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      std::vector&lt;RVO::Vector3&gt;(<a class="code" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a>)</div>
+</div><!-- fragment -->
+<p>Velocities of the drones. </p>
 
 </div>
 </div>
-<a id="af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9f93aa9d3ac2e7bc5c2d4f8d4f6c5b4">&#9670;&nbsp;</a></span>goals</h2>
+<a id="a28382a622520fe9eae0649e398a98f3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28382a622520fe9eae0649e398a98f3e">&#9670;&nbsp;</a></span>goals_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +415,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::goals</td>
+          <td class="memname">std::vector&lt;RVO::Vector3&gt; MinimalSubscriber::goals_</td>
         </tr>
       </table>
   </td>
@@ -377,6 +424,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Current goals for the drones. </p>
 
 </div>
 </div>
@@ -400,10 +449,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Queue of letters to write. </p>
+
 </div>
 </div>
-<a id="a6f0522e433977ef2bdf4d170c957a6e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f0522e433977ef2bdf4d170c957a6e8">&#9670;&nbsp;</a></span>numSubs</h2>
+<a id="a2b2e49d66a9cec333f5439c08be7818b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2e49d66a9cec333f5439c08be7818b">&#9670;&nbsp;</a></span>num_drones_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -412,7 +463,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int MinimalSubscriber::numSubs = 20</td>
+          <td class="memname">int MinimalSubscriber::num_drones_ = 20</td>
         </tr>
       </table>
   </td>
@@ -421,6 +472,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The number of drones being controlled. </p>
 
 </div>
 </div>
@@ -444,6 +497,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Orchestrator instance for managing drone coordination. </p>
+
 </div>
 </div>
 <a id="a5ef7dfc2b155cb661dc4803eb89ed37b"></a>
@@ -456,7 +511,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a>&gt; MinimalSubscriber::position_subscribers_ = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td>
+          <td class="memname">std::vector&lt;<a class="el" href="dji__mavic__controller_8cpp.html#a944f037a4409782472d0b34735ae3df6">POS_SUBSCRIBER</a>&gt; MinimalSubscriber::position_subscribers_</td>
         </tr>
       </table>
   </td>
@@ -465,6 +520,10 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      std::vector&lt;POS_SUBSCRIBER&gt;(<a class="code" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a>)</div>
+</div><!-- fragment -->
+<p>Subscribers for drone positions. </p>
 
 </div>
 </div>
@@ -478,7 +537,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="publisher__member__function_8cpp.html#a59fbe15a44ccf259bfb94512a32d2a84">TIMER</a> MinimalSubscriber::timer_</td>
+          <td class="memname"><a class="el" href="dji__mavic__controller_8cpp.html#a59fbe15a44ccf259bfb94512a32d2a84">TIMER</a> MinimalSubscriber::timer_</td>
         </tr>
       </table>
   </td>
@@ -487,6 +546,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Timer for periodic updates. </p>
 
 </div>
 </div>
@@ -500,7 +561,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a>&gt; MinimalSubscriber::velocity_publishers_ = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td>
+          <td class="memname">std::vector&lt;<a class="el" href="dji__mavic__controller_8cpp.html#a8bd00bf60e97d4188cf4b9caa76a948c">VEL_PUBLISHER</a>&gt; MinimalSubscriber::velocity_publishers_</td>
         </tr>
       </table>
   </td>
@@ -509,6 +570,10 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      std::vector&lt;VEL_PUBLISHER&gt;(<a class="code" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a>)</div>
+</div><!-- fragment -->
+<p>Publishers for drone velocity commands. </p>
 
 </div>
 </div>
@@ -522,7 +587,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a>&gt; MinimalSubscriber::velocity_subscribers_ = std::vector&lt;<a class="el" href="subscriber__member__function_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a>&gt;(<a class="el" href="classMinimalSubscriber.html#a6f0522e433977ef2bdf4d170c957a6e8">numSubs</a>)</td>
+          <td class="memname">std::vector&lt;<a class="el" href="dji__mavic__controller_8cpp.html#a860591548402beed8373522ac4f6792f">VEL_SUBSCRIBER</a>&gt; MinimalSubscriber::velocity_subscribers_</td>
         </tr>
       </table>
   </td>
@@ -531,11 +596,15 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      std::vector&lt;VEL_SUBSCRIBER&gt;(<a class="code" href="classMinimalSubscriber.html#a2b2e49d66a9cec333f5439c08be7818b">num_drones_</a>)</div>
+</div><!-- fragment -->
+<p>Subscribers for drone velocities. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="subscriber__member__function_8cpp.html">subscriber_member_function.cpp</a></li>
+<li>src/<a class="el" href="dji__mavic__controller_8cpp.html">dji_mavic_controller.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

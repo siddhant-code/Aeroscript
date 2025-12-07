@@ -1,4 +1,4 @@
-<map id="Orchestrator::getWebotDronePosition" name="Orchestrator::getWebotDronePosition">
+<map id="Orchestrator::GetWebotDronePosition" name="Orchestrator::GetWebotDronePosition">
 <area shape="rect" id="node1" title=" " alt="" coords="673,57,885,98"/>
 <area shape="rect" id="node2" href="$classOrchestrator.html#ae9d0a39ff3b5461994c9c8bcc21f192b" title=" " alt="" coords="410,5,610,32"/>
 <area shape="rect" id="node3" href="$classOrchestrator.html#a8d42bc15122a3ae4003d9b96ad2ae7b2" title=" " alt="" coords="395,57,625,98"/>

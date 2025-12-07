@@ -1,4 +1,4 @@
-<map id="Orchestrator::getNewVelocities" name="Orchestrator::getNewVelocities">
+<map id="Orchestrator::GetNewVelocities" name="Orchestrator::GetNewVelocities">
 <area shape="rect" id="node1" title=" " alt="" coords="5,46,229,73"/>
 <area shape="rect" id="node2" href="$classOrchestrator.html#a9b4b36dae5b2e8c9e2ad5092e8d94e4d" title=" " alt="" coords="287,5,499,47"/>
 <area shape="rect" id="node3" href="$classOrchestrator.html#a8d42bc15122a3ae4003d9b96ad2ae7b2" title=" " alt="" coords="277,71,508,112"/>
