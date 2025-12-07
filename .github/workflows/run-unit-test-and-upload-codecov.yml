@@ -96,6 +96,15 @@ jobs:
           cmake ..
           make -j$(nproc)
           sudo make install
+
+      - name: Install Webots dependency
+        run: |
+          mkdir -p /tmp/dependencies
+          wget -O /tmp/dependencies/webots_2025a_amd64.deb https://github.com/cyberbotics/webots/releases/download/R2025a/webots_2025a_amd64.deb
+          apt-get install -y ros-humble-webots-ros2
+          dpkg -i /tmp/dependencies/webots_2025a_amd64.deb || true
+          apt-get install -f -y 
+          rm -rf /var/lib/apt/lists/*
           
       # Run all unit test, integration test, and generate combined coverage report
       - name: Build, run unit test, and generate coverage report
