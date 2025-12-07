@@ -1,6 +1,6 @@
 # AEROSCRIPT
 
-![CICD Workflow status](https://github.com/siddhant-code/Aeroscript/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/siddhant-code/AeroScript/branch/main/graph/badge.svg)](https://codecov.io/gh/siddhant-code/AeroScript) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![CICD Workflow status](https://github.com/siddhant-code/Aeroscript/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/siddhant-code/AeroScript/branch/main/graph/badge.svg)](https://codecov.io/gh/siddhant-code/AeroScript) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
@@ -64,6 +64,11 @@ For Model & Controller scripts:
 For UML, Unit Tests and Integration tests:
 
 - Madhav (Driver), Siddhant (Navigator)
+
+### Phase-2:
+
+- Migrating drone-simulation package from python to cpp
+- Code clean up
 
 #### Deliverables:
 
