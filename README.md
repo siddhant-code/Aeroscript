@@ -161,44 +161,17 @@ VERBOSE=1 colcon build --event-handlers console_cohesion+
 
 ## Running the System
 
-### 1. Run Demo (Talker/Listener)
+### 1. Run Webots Simulation
 
 ```bash
 source install/setup.bash
-ros2 launch drone_controller run_demo.launch.yaml
-```
-
-This launches:
-- `talker` node - Publishes messages
-- `listener` node - Subscribes to messages and coordinates drones
-
-### 2. Run Webots Simulation
-
-```bash
-source install/setup.bash
-ros2 launch mavic_simulation robot_launch.py
+ros2 launch mavic_simulation robot_launch.py text:=HELLO
 ```
 
 This will:
 - Launch Webots simulation with Mavic drones
 - Start MavicDriver nodes for each drone
 - Enable ROS2 topic communication
-
-### 3. Run Full System
-
-In separate terminals:
-
-**Terminal 1 - Webots Simulation:**
-```bash
-source install/setup.bash
-ros2 launch mavic_simulation robot_launch.py
-```
-
-**Terminal 2 - Drone Controller:**
-```bash
-source install/setup.bash
-ros2 run drone_controller listener
-```
 
 ## Testing
 
@@ -407,10 +380,11 @@ See `.github/workflows/run-unit-test-and-upload-codecov.yml` for details.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
 
 ## Acknowledgments
 
 - RVO3D library: https://github.com/snape/RVO2-3D
 - ROS2 Humble: https://docs.ros.org/en/humble/
 - Webots: https://cyberbotics.com/
+- Multi Drone launch: https://github.com/patrickpbarroso/drone-simulation.git
