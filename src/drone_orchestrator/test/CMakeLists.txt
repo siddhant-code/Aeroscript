@@ -2,7 +2,6 @@
 add_executable(drone_orchestrator_tester
   # list of source cpp files:
   main.cpp
-  test.cpp
   orchestrator_test.cpp
   )
 
@@ -19,7 +18,7 @@ target_include_directories(drone_orchestrator_tester PUBLIC
 target_link_libraries(drone_orchestrator_tester PUBLIC
   # list of libraries:
   GTest::gtest
-  GTest::gmock
+  # GTest::gmock
   RVO3D::RVO3D
   drone_orchestrator
   )
