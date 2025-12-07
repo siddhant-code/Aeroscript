@@ -70,13 +70,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> class to manage multiple drones using RVO.  
+ <a href="classOrchestrator.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="orchestrator_8hpp_source.html">orchestrator.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Orchestrator:</div>
 <div class="dyncontent">
 <div class="center"><img src="classOrchestrator__coll__graph.png" border="0" usemap="#aOrchestrator_coll__map" alt="Collaboration graph"/></div>
 <map name="aOrchestrator_coll__map" id="aOrchestrator_coll__map">
-<area shape="rect" title=" " alt="" coords="68,440,299,679"/>
+<area shape="rect" title="Orchestrator class to manage multiple drones using RVO." alt="" coords="68,455,299,693"/>
 <area shape="rect" title=" " alt="" coords="5,285,129,363"/>
 <area shape="rect" title=" " alt="" coords="153,285,213,363"/>
 <area shape="rect" title=" " alt="" coords="237,285,444,363"/>
@@ -88,43 +91,60 @@ Collaboration diagram for Orchestrator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0323f9f160d8a93a93af649a9a4bbc54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a0323f9f160d8a93a93af649a9a4bbc54">Orchestrator</a> (std::vector&lt; RVO::Vector3 &gt; initial_pos, float timeStep=0.008f, float neighborDist=3.0f, size_t maxNeighbors=20, float timeHorizon=0.8f, float radius=0.4f, float maxSpeed=0.5f)</td></tr>
-<tr class="separator:a0323f9f160d8a93a93af649a9a4bbc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aede62ab0febc47ebb441ff4d135e4a6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#aede62ab0febc47ebb441ff4d135e4a6f">setWebotDronePositionsAndVelocities</a> (std::vector&lt; RVO::Vector3 &gt; &amp;positions, std::vector&lt; RVO::Vector3 &gt; &amp;velocities)</td></tr>
-<tr class="separator:aede62ab0febc47ebb441ff4d135e4a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d42bc15122a3ae4003d9b96ad2ae7b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a8d42bc15122a3ae4003d9b96ad2ae7b2">setWebotPrefferedVelocities</a> ()</td></tr>
-<tr class="separator:a8d42bc15122a3ae4003d9b96ad2ae7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66328a963abcbf072869b346018c448"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#ae66328a963abcbf072869b346018c448">setWebotDroneGoals</a> (std::vector&lt; RVO::Vector3 &gt; &amp;goals)</td></tr>
-<tr class="separator:ae66328a963abcbf072869b346018c448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9d0a39ff3b5461994c9c8bcc21f192b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#ae9d0a39ff3b5461994c9c8bcc21f192b">reachedGoals</a> (std::vector&lt; RVO::Vector3 &gt; goals)</td></tr>
-<tr class="separator:ae9d0a39ff3b5461994c9c8bcc21f192b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78bdb25bc8f5e1b2d71cb156ed2aa3fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a78bdb25bc8f5e1b2d71cb156ed2aa3fd">getNewVelocities</a> ()</td></tr>
-<tr class="separator:a78bdb25bc8f5e1b2d71cb156ed2aa3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d1565da6750e801c3c6735d4cb3a983"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a8d1565da6750e801c3c6735d4cb3a983">getWebotDroneGoal</a> (int drone_id)</td></tr>
-<tr class="separator:a8d1565da6750e801c3c6735d4cb3a983"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf428fd31b76f1829370b7d65591272c"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#acf428fd31b76f1829370b7d65591272c">getWebotDronePosition</a> (int drone_id)</td></tr>
-<tr class="separator:acf428fd31b76f1829370b7d65591272c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b4b36dae5b2e8c9e2ad5092e8d94e4d"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a9b4b36dae5b2e8c9e2ad5092e8d94e4d">getWebotDroneVelocity</a> (int drone_id)</td></tr>
-<tr class="separator:a9b4b36dae5b2e8c9e2ad5092e8d94e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a959427102183505bdc63d148168d5ab3"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a959427102183505bdc63d148168d5ab3">getDronePreferredVelocity</a> (int drone_id)</td></tr>
-<tr class="separator:a959427102183505bdc63d148168d5ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa3667cb4c7d4a10ec4b25d26cba80d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a5fa3667cb4c7d4a10ec4b25d26cba80d">Orchestrator</a> (std::vector&lt; RVO::Vector3 &gt; initialPos, float timeStep=0.008f, float neighborDist=3.0f, size_t maxNeighbors=20, float timeHorizon=3.5f, float radius=0.4f, float maxSpeed=0.5f)</td></tr>
+<tr class="memdesc:a5fa3667cb4c7d4a10ec4b25d26cba80d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> object.  <a href="classOrchestrator.html#a5fa3667cb4c7d4a10ec4b25d26cba80d">More...</a><br /></td></tr>
+<tr class="separator:a5fa3667cb4c7d4a10ec4b25d26cba80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65fb2fe9b07618d667b5dc62a49932ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a65fb2fe9b07618d667b5dc62a49932ae">SetWebotDronePositionsAndVelocities</a> (std::vector&lt; RVO::Vector3 &gt; &amp;positions, std::vector&lt; RVO::Vector3 &gt; &amp;velocities)</td></tr>
+<tr class="memdesc:a65fb2fe9b07618d667b5dc62a49932ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Webot Drone Positions And Velocities.  <a href="classOrchestrator.html#a65fb2fe9b07618d667b5dc62a49932ae">More...</a><br /></td></tr>
+<tr class="separator:a65fb2fe9b07618d667b5dc62a49932ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a06137c96eaac49f760e5d36896b9ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a3a06137c96eaac49f760e5d36896b9ce">SetWebotPrefferedVelocities</a> ()</td></tr>
+<tr class="memdesc:a3a06137c96eaac49f760e5d36896b9ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Webot Preffered Velocities for Drones.  <a href="classOrchestrator.html#a3a06137c96eaac49f760e5d36896b9ce">More...</a><br /></td></tr>
+<tr class="separator:a3a06137c96eaac49f760e5d36896b9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92706c488d14f4a16413db20c2e4844"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#ab92706c488d14f4a16413db20c2e4844">SetWebotDroneGoals</a> (std::vector&lt; RVO::Vector3 &gt; &amp;goals)</td></tr>
+<tr class="memdesc:ab92706c488d14f4a16413db20c2e4844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Webot Drone Goals.  <a href="classOrchestrator.html#ab92706c488d14f4a16413db20c2e4844">More...</a><br /></td></tr>
+<tr class="separator:ab92706c488d14f4a16413db20c2e4844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd2867cf6288d4a7098fc537e0746139"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#acd2867cf6288d4a7098fc537e0746139">ReachedGoals</a> ()</td></tr>
+<tr class="memdesc:acd2867cf6288d4a7098fc537e0746139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if all drones have reached their goals.  <a href="classOrchestrator.html#acd2867cf6288d4a7098fc537e0746139">More...</a><br /></td></tr>
+<tr class="separator:acd2867cf6288d4a7098fc537e0746139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d10c954d6965106f90ce72b66df0aa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa">GetNewVelocities</a> ()</td></tr>
+<tr class="memdesc:a29d10c954d6965106f90ce72b66df0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the New Velocities for the drones.  <a href="classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa">More...</a><br /></td></tr>
+<tr class="separator:a29d10c954d6965106f90ce72b66df0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4868ff48584f2d271fce8bf112f0e0cd"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a4868ff48584f2d271fce8bf112f0e0cd">GetWebotDroneGoal</a> (int drone_id)</td></tr>
+<tr class="memdesc:a4868ff48584f2d271fce8bf112f0e0cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Webot Drone Goal for a specific drone.  <a href="classOrchestrator.html#a4868ff48584f2d271fce8bf112f0e0cd">More...</a><br /></td></tr>
+<tr class="separator:a4868ff48584f2d271fce8bf112f0e0cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842e865cda1767a911331fcd05c46600"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600">GetWebotDronePosition</a> (int drone_id)</td></tr>
+<tr class="memdesc:a842e865cda1767a911331fcd05c46600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Webot Drone Position for a specific drone.  <a href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600">More...</a><br /></td></tr>
+<tr class="separator:a842e865cda1767a911331fcd05c46600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7427b89017af9b6e35b6f2caf3763033"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a7427b89017af9b6e35b6f2caf3763033">GetWebotDroneVelocity</a> (int drone_id)</td></tr>
+<tr class="memdesc:a7427b89017af9b6e35b6f2caf3763033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Webot Drone Velocity for a specific drone.  <a href="classOrchestrator.html#a7427b89017af9b6e35b6f2caf3763033">More...</a><br /></td></tr>
+<tr class="separator:a7427b89017af9b6e35b6f2caf3763033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d588a596e60e2e1c4d3361778f14c44"><td class="memItemLeft" align="right" valign="top">RVO::Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a6d588a596e60e2e1c4d3361778f14c44">GetDronePreferredVelocity</a> (int drone_id)</td></tr>
+<tr class="memdesc:a6d588a596e60e2e1c4d3361778f14c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Drone Preferred Velocity for a specific drone.  <a href="classOrchestrator.html#a6d588a596e60e2e1c4d3361778f14c44">More...</a><br /></td></tr>
+<tr class="separator:a6d588a596e60e2e1c4d3361778f14c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134459a83f516ef59fb70a3451d40d0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a134459a83f516ef59fb70a3451d40d0b">~Orchestrator</a> ()</td></tr>
+<tr class="memdesc:a134459a83f516ef59fb70a3451d40d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> object.  <a href="classOrchestrator.html#a134459a83f516ef59fb70a3451d40d0b">More...</a><br /></td></tr>
 <tr class="separator:a134459a83f516ef59fb70a3451d40d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:aa7f0a2be7fcddd47f276b1961edaeca6"><td class="memItemLeft" align="right" valign="top">RVO::RVOSimulator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#aa7f0a2be7fcddd47f276b1961edaeca6">simulator</a></td></tr>
-<tr class="separator:aa7f0a2be7fcddd47f276b1961edaeca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a486e00d2913020928da769ec96587e24"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a486e00d2913020928da769ec96587e24">numDrones</a></td></tr>
-<tr class="separator:a486e00d2913020928da769ec96587e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2962e79c443a9fd1b1a395e60cb1b058"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a2962e79c443a9fd1b1a395e60cb1b058">dronePreferredVelocities</a></td></tr>
-<tr class="separator:a2962e79c443a9fd1b1a395e60cb1b058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cc783a889d771ec07c99ffb5588d859"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a3cc783a889d771ec07c99ffb5588d859">droneGoals</a></td></tr>
-<tr class="separator:a3cc783a889d771ec07c99ffb5588d859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62a1077a6013849955311b798d6823d"><td class="memItemLeft" align="right" valign="top">RVO::RVOSimulator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#ac62a1077a6013849955311b798d6823d">simulator_</a></td></tr>
+<tr class="memdesc:ac62a1077a6013849955311b798d6823d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the RVO Simulator.  <a href="classOrchestrator.html#ac62a1077a6013849955311b798d6823d">More...</a><br /></td></tr>
+<tr class="separator:ac62a1077a6013849955311b798d6823d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f138c4b71a2c5ebda4199605b352707"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a6f138c4b71a2c5ebda4199605b352707">num_drones_</a></td></tr>
+<tr class="memdesc:a6f138c4b71a2c5ebda4199605b352707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of drones being managed.  <a href="classOrchestrator.html#a6f138c4b71a2c5ebda4199605b352707">More...</a><br /></td></tr>
+<tr class="separator:a6f138c4b71a2c5ebda4199605b352707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b60a0e2f9c09ef00e3e9eb1c3c99ed5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a6b60a0e2f9c09ef00e3e9eb1c3c99ed5">drone_preferred_velocities_</a></td></tr>
+<tr class="memdesc:a6b60a0e2f9c09ef00e3e9eb1c3c99ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vectors representing the preferred velocities of the drones.  <a href="classOrchestrator.html#a6b60a0e2f9c09ef00e3e9eb1c3c99ed5">More...</a><br /></td></tr>
+<tr class="separator:a6b60a0e2f9c09ef00e3e9eb1c3c99ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ee84a733ab9936d1836e83dc1a21ba"><td class="memItemLeft" align="right" valign="top">std::vector&lt; RVO::Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOrchestrator.html#a02ee84a733ab9936d1836e83dc1a21ba">drone_goals_</a></td></tr>
+<tr class="memdesc:a02ee84a733ab9936d1836e83dc1a21ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector representing Goals of the drones.  <a href="classOrchestrator.html#a02ee84a733ab9936d1836e83dc1a21ba">More...</a><br /></td></tr>
+<tr class="separator:a02ee84a733ab9936d1836e83dc1a21ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0323f9f160d8a93a93af649a9a4bbc54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0323f9f160d8a93a93af649a9a4bbc54">&#9670;&nbsp;</a></span>Orchestrator()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> class to manage multiple drones using RVO. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5fa3667cb4c7d4a10ec4b25d26cba80d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa3667cb4c7d4a10ec4b25d26cba80d">&#9670;&nbsp;</a></span>Orchestrator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,7 +153,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">Orchestrator::Orchestrator </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; RVO::Vector3 &gt;&#160;</td>
-          <td class="paramname"><em>initial_pos</em>, </td>
+          <td class="paramname"><em>initialPos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -157,7 +177,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>timeHorizon</em> = <code>0.8f</code>, </td>
+          <td class="paramname"><em>timeHorizon</em> = <code>3.5f</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -179,6 +199,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Construct a new <a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initialPos</td><td>Initial positions of the drones </td></tr>
+    <tr><td class="paramname">timeStep</td><td>The time step of the simulation. Must be positive. </td></tr>
+    <tr><td class="paramname">neighborDist</td><td>The default maximal distance (center point to center point) to other agents a new agent takes into account in the navigation. The larger this number, the longer he running time of the simulation. If the number is too low, the simulation will not be safe. Must be non-negative. </td></tr>
+    <tr><td class="paramname">maxNeighbors</td><td>The default maximal number of other agents a new agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. </td></tr>
+    <tr><td class="paramname">timeHorizon</td><td>The default minimal amount of time for which a new agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner an agent will respond to the presence of other agents, but the less freedom the agent has in choosing its velocities. Must be positive. </td></tr>
+    <tr><td class="paramname">radius</td><td>The default radius of a new agent. Must be non-negative. </td></tr>
+    <tr><td class="paramname">maxSpeed</td><td>The default maximal speed of a new agent. Must be non-negative. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a134459a83f516ef59fb70a3451d40d0b"></a>
@@ -196,17 +230,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Destroy the <a class="el" href="classOrchestrator.html" title="Orchestrator class to manage multiple drones using RVO.">Orchestrator</a> object. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a959427102183505bdc63d148168d5ab3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a959427102183505bdc63d148168d5ab3">&#9670;&nbsp;</a></span>getDronePreferredVelocity()</h2>
+<a id="a6d588a596e60e2e1c4d3361778f14c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d588a596e60e2e1c4d3361778f14c44">&#9670;&nbsp;</a></span>GetDronePreferredVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RVO::Vector3 Orchestrator::getDronePreferredVelocity </td>
+          <td class="memname">RVO::Vector3 Orchestrator::GetDronePreferredVelocity </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>drone_id</em></td><td>)</td>
@@ -215,53 +251,65 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the Drone Preferred Velocity for a specific drone. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drone_id</td><td>The ID of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RVO::Vector3 The preferred velocity of the drone </dd></dl>
+
 </div>
 </div>
-<a id="a78bdb25bc8f5e1b2d71cb156ed2aa3fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78bdb25bc8f5e1b2d71cb156ed2aa3fd">&#9670;&nbsp;</a></span>getNewVelocities()</h2>
+<a id="a29d10c954d6965106f90ce72b66df0aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d10c954d6965106f90ce72b66df0aa">&#9670;&nbsp;</a></span>GetNewVelocities()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; RVO::Vector3 &gt; Orchestrator::getNewVelocities </td>
+          <td class="memname">std::vector&lt; RVO::Vector3 &gt; Orchestrator::GetNewVelocities </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the New Velocities for the drones. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;RVO::Vector3&gt; The new velocities for the drones </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_cgraph.png" border="0" usemap="#aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_cgraph" alt=""/></div>
-<map name="aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_cgraph" id="aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_cgraph">
-<area shape="rect" title=" " alt="" coords="5,46,229,73"/>
-<area shape="rect" href="classOrchestrator.html#a9b4b36dae5b2e8c9e2ad5092e8d94e4d" title=" " alt="" coords="287,5,499,47"/>
-<area shape="rect" href="classOrchestrator.html#a8d42bc15122a3ae4003d9b96ad2ae7b2" title=" " alt="" coords="277,71,508,112"/>
-<area shape="rect" href="classOrchestrator.html#acf428fd31b76f1829370b7d65591272c" title=" " alt="" coords="556,71,768,112"/>
+<div class="center"><img src="classOrchestrator_a29d10c954d6965106f90ce72b66df0aa_cgraph.png" border="0" usemap="#aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_cgraph" alt=""/></div>
+<map name="aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_cgraph" id="aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_cgraph">
+<area shape="rect" title="Get the New Velocities for the drones." alt="" coords="5,46,232,73"/>
+<area shape="rect" href="classOrchestrator.html#a7427b89017af9b6e35b6f2caf3763033" title="Get the Webot Drone Velocity for a specific drone." alt="" coords="289,5,503,47"/>
+<area shape="rect" href="classOrchestrator.html#a3a06137c96eaac49f760e5d36896b9ce" title="Set the Webot Preffered Velocities for Drones." alt="" coords="280,71,512,112"/>
+<area shape="rect" href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="560,71,775,112"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_icgraph.png" border="0" usemap="#aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_icgraph" alt=""/></div>
-<map name="aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_icgraph" id="aclassOrchestrator_a78bdb25bc8f5e1b2d71cb156ed2aa3fd_icgraph">
-<area shape="rect" title=" " alt="" coords="123,5,347,32"/>
+<div class="center"><img src="classOrchestrator_a29d10c954d6965106f90ce72b66df0aa_icgraph.png" border="0" usemap="#aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_icgraph" alt=""/></div>
+<map name="aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_icgraph" id="aclassOrchestrator_a29d10c954d6965106f90ce72b66df0aa_icgraph">
+<area shape="rect" title="Get the New Velocities for the drones." alt="" coords="123,5,349,32"/>
 <area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,5,75,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a8d1565da6750e801c3c6735d4cb3a983"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d1565da6750e801c3c6735d4cb3a983">&#9670;&nbsp;</a></span>getWebotDroneGoal()</h2>
+<a id="a4868ff48584f2d271fce8bf112f0e0cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4868ff48584f2d271fce8bf112f0e0cd">&#9670;&nbsp;</a></span>GetWebotDroneGoal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RVO::Vector3 Orchestrator::getWebotDroneGoal </td>
+          <td class="memname">RVO::Vector3 Orchestrator::GetWebotDroneGoal </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>drone_id</em></td><td>)</td>
@@ -270,16 +318,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Get the Webot Drone Goal for a specific drone. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drone_id</td><td>The ID of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RVO::Vector3 The goal position of the drone </dd></dl>
+
 </div>
 </div>
-<a id="acf428fd31b76f1829370b7d65591272c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf428fd31b76f1829370b7d65591272c">&#9670;&nbsp;</a></span>getWebotDronePosition()</h2>
+<a id="a842e865cda1767a911331fcd05c46600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842e865cda1767a911331fcd05c46600">&#9670;&nbsp;</a></span>GetWebotDronePosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RVO::Vector3 Orchestrator::getWebotDronePosition </td>
+          <td class="memname">RVO::Vector3 Orchestrator::GetWebotDronePosition </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>drone_id</em></td><td>)</td>
@@ -287,29 +344,39 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the Webot Drone Position for a specific drone. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drone_id</td><td>The ID of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RVO::Vector3 The position of the drone </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_acf428fd31b76f1829370b7d65591272c_icgraph.png" border="0" usemap="#aclassOrchestrator_acf428fd31b76f1829370b7d65591272c_icgraph" alt=""/></div>
-<map name="aclassOrchestrator_acf428fd31b76f1829370b7d65591272c_icgraph" id="aclassOrchestrator_acf428fd31b76f1829370b7d65591272c_icgraph">
-<area shape="rect" title=" " alt="" coords="673,57,885,98"/>
-<area shape="rect" href="classOrchestrator.html#ae9d0a39ff3b5461994c9c8bcc21f192b" title=" " alt="" coords="410,5,610,32"/>
-<area shape="rect" href="classOrchestrator.html#a8d42bc15122a3ae4003d9b96ad2ae7b2" title=" " alt="" coords="395,57,625,98"/>
-<area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,97,75,124"/>
-<area shape="rect" href="classOrchestrator.html#a78bdb25bc8f5e1b2d71cb156ed2aa3fd" title=" " alt="" coords="123,68,347,95"/>
+<div class="center"><img src="classOrchestrator_a842e865cda1767a911331fcd05c46600_icgraph.png" border="0" usemap="#aclassOrchestrator_a842e865cda1767a911331fcd05c46600_icgraph" alt=""/></div>
+<map name="aclassOrchestrator_a842e865cda1767a911331fcd05c46600_icgraph" id="aclassOrchestrator_a842e865cda1767a911331fcd05c46600_icgraph">
+<area shape="rect" title="Get the Webot Drone Position for a specific drone." alt="" coords="677,74,892,115"/>
+<area shape="rect" href="classOrchestrator.html#acd2867cf6288d4a7098fc537e0746139" title="Check if all drones have reached their goals." alt="" coords="411,5,615,32"/>
+<area shape="rect" href="classOrchestrator.html#ab92706c488d14f4a16413db20c2e4844" title="Set the Webot Drone Goals." alt="" coords="130,41,342,82"/>
+<area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,107,75,133"/>
+<area shape="rect" href="classOrchestrator.html#a3a06137c96eaac49f760e5d36896b9ce" title="Set the Webot Preffered Velocities for Drones." alt="" coords="397,158,629,199"/>
+<area shape="rect" href="classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa" title="Get the New Velocities for the drones." alt="" coords="123,161,349,188"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a9b4b36dae5b2e8c9e2ad5092e8d94e4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b4b36dae5b2e8c9e2ad5092e8d94e4d">&#9670;&nbsp;</a></span>getWebotDroneVelocity()</h2>
+<a id="a7427b89017af9b6e35b6f2caf3763033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7427b89017af9b6e35b6f2caf3763033">&#9670;&nbsp;</a></span>GetWebotDroneVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">RVO::Vector3 Orchestrator::getWebotDroneVelocity </td>
+          <td class="memname">RVO::Vector3 Orchestrator::GetWebotDroneVelocity </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>drone_id</em></td><td>)</td>
@@ -317,54 +384,67 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the Webot Drone Velocity for a specific drone. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drone_id</td><td>The ID of the drone </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RVO::Vector3 The velocity of the drone </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_a9b4b36dae5b2e8c9e2ad5092e8d94e4d_icgraph.png" border="0" usemap="#aclassOrchestrator_a9b4b36dae5b2e8c9e2ad5092e8d94e4d_icgraph" alt=""/></div>
-<map name="aclassOrchestrator_a9b4b36dae5b2e8c9e2ad5092e8d94e4d_icgraph" id="aclassOrchestrator_a9b4b36dae5b2e8c9e2ad5092e8d94e4d_icgraph">
-<area shape="rect" title=" " alt="" coords="395,5,607,47"/>
-<area shape="rect" href="classOrchestrator.html#a78bdb25bc8f5e1b2d71cb156ed2aa3fd" title=" " alt="" coords="123,13,347,39"/>
+<div class="center"><img src="classOrchestrator_a7427b89017af9b6e35b6f2caf3763033_icgraph.png" border="0" usemap="#aclassOrchestrator_a7427b89017af9b6e35b6f2caf3763033_icgraph" alt=""/></div>
+<map name="aclassOrchestrator_a7427b89017af9b6e35b6f2caf3763033_icgraph" id="aclassOrchestrator_a7427b89017af9b6e35b6f2caf3763033_icgraph">
+<area shape="rect" title="Get the Webot Drone Velocity for a specific drone." alt="" coords="397,5,612,47"/>
+<area shape="rect" href="classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa" title="Get the New Velocities for the drones." alt="" coords="123,13,349,39"/>
 <area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,13,75,39"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ae9d0a39ff3b5461994c9c8bcc21f192b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9d0a39ff3b5461994c9c8bcc21f192b">&#9670;&nbsp;</a></span>reachedGoals()</h2>
+<a id="acd2867cf6288d4a7098fc537e0746139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd2867cf6288d4a7098fc537e0746139">&#9670;&nbsp;</a></span>ReachedGoals()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Orchestrator::reachedGoals </td>
+          <td class="memname">bool Orchestrator::ReachedGoals </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; RVO::Vector3 &gt;&#160;</td>
-          <td class="paramname"><em>goals</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Check if all drones have reached their goals. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if all drones have reached their goals </dd>
+<dd>
+false otherwise </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_ae9d0a39ff3b5461994c9c8bcc21f192b_cgraph.png" border="0" usemap="#aclassOrchestrator_ae9d0a39ff3b5461994c9c8bcc21f192b_cgraph" alt=""/></div>
-<map name="aclassOrchestrator_ae9d0a39ff3b5461994c9c8bcc21f192b_cgraph" id="aclassOrchestrator_ae9d0a39ff3b5461994c9c8bcc21f192b_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,205,39"/>
-<area shape="rect" href="classOrchestrator.html#acf428fd31b76f1829370b7d65591272c" title=" " alt="" coords="253,5,465,47"/>
+<div class="center"><img src="classOrchestrator_acd2867cf6288d4a7098fc537e0746139_cgraph.png" border="0" usemap="#aclassOrchestrator_acd2867cf6288d4a7098fc537e0746139_cgraph" alt=""/></div>
+<map name="aclassOrchestrator_acd2867cf6288d4a7098fc537e0746139_cgraph" id="aclassOrchestrator_acd2867cf6288d4a7098fc537e0746139_cgraph">
+<area shape="rect" title="Check if all drones have reached their goals." alt="" coords="5,13,209,39"/>
+<area shape="rect" href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="257,5,472,47"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ae66328a963abcbf072869b346018c448"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae66328a963abcbf072869b346018c448">&#9670;&nbsp;</a></span>setWebotDroneGoals()</h2>
+<a id="ab92706c488d14f4a16413db20c2e4844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab92706c488d14f4a16413db20c2e4844">&#9670;&nbsp;</a></span>SetWebotDroneGoals()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Orchestrator::setWebotDroneGoals </td>
+          <td class="memname">void Orchestrator::SetWebotDroneGoals </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; RVO::Vector3 &gt; &amp;&#160;</td>
           <td class="paramname"><em>goals</em></td><td>)</td>
@@ -373,16 +453,42 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Set the Webot Drone Goals. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">goals</td><td>The goal positions for the drones </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classOrchestrator_ab92706c488d14f4a16413db20c2e4844_cgraph.png" border="0" usemap="#aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_cgraph" alt=""/></div>
+<map name="aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_cgraph" id="aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_cgraph">
+<area shape="rect" title="Set the Webot Drone Goals." alt="" coords="5,5,217,47"/>
+<area shape="rect" href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="265,5,480,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classOrchestrator_ab92706c488d14f4a16413db20c2e4844_icgraph.png" border="0" usemap="#aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_icgraph" alt=""/></div>
+<map name="aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_icgraph" id="aclassOrchestrator_ab92706c488d14f4a16413db20c2e4844_icgraph">
+<area shape="rect" title="Set the Webot Drone Goals." alt="" coords="123,5,335,47"/>
+<area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,13,75,39"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="aede62ab0febc47ebb441ff4d135e4a6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aede62ab0febc47ebb441ff4d135e4a6f">&#9670;&nbsp;</a></span>setWebotDronePositionsAndVelocities()</h2>
+<a id="a65fb2fe9b07618d667b5dc62a49932ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65fb2fe9b07618d667b5dc62a49932ae">&#9670;&nbsp;</a></span>SetWebotDronePositionsAndVelocities()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Orchestrator::setWebotDronePositionsAndVelocities </td>
+          <td class="memname">void Orchestrator::SetWebotDronePositionsAndVelocities </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; RVO::Vector3 &gt; &amp;&#160;</td>
           <td class="paramname"><em>positions</em>, </td>
@@ -401,38 +507,49 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Set the Webot Drone Positions And Velocities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td>The positions of the drones </td></tr>
+    <tr><td class="paramname">velocities</td><td>The velocities of the drones </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a8d42bc15122a3ae4003d9b96ad2ae7b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d42bc15122a3ae4003d9b96ad2ae7b2">&#9670;&nbsp;</a></span>setWebotPrefferedVelocities()</h2>
+<a id="a3a06137c96eaac49f760e5d36896b9ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a06137c96eaac49f760e5d36896b9ce">&#9670;&nbsp;</a></span>SetWebotPrefferedVelocities()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Orchestrator::setWebotPrefferedVelocities </td>
+          <td class="memname">void Orchestrator::SetWebotPrefferedVelocities </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set the Webot Preffered Velocities for Drones. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_cgraph.png" border="0" usemap="#aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_cgraph" alt=""/></div>
-<map name="aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_cgraph" id="aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,236,47"/>
-<area shape="rect" href="classOrchestrator.html#acf428fd31b76f1829370b7d65591272c" title=" " alt="" coords="284,5,496,47"/>
+<div class="center"><img src="classOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_cgraph.png" border="0" usemap="#aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_cgraph" alt=""/></div>
+<map name="aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_cgraph" id="aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_cgraph">
+<area shape="rect" title="Set the Webot Preffered Velocities for Drones." alt="" coords="5,5,237,47"/>
+<area shape="rect" href="classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="285,5,500,47"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_icgraph.png" border="0" usemap="#aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_icgraph" alt=""/></div>
-<map name="aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_icgraph" id="aclassOrchestrator_a8d42bc15122a3ae4003d9b96ad2ae7b2_icgraph">
-<area shape="rect" title=" " alt="" coords="395,5,625,47"/>
-<area shape="rect" href="classOrchestrator.html#a78bdb25bc8f5e1b2d71cb156ed2aa3fd" title=" " alt="" coords="123,13,347,39"/>
+<div class="center"><img src="classOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_icgraph.png" border="0" usemap="#aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_icgraph" alt=""/></div>
+<map name="aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_icgraph" id="aclassOrchestrator_a3a06137c96eaac49f760e5d36896b9ce_icgraph">
+<area shape="rect" title="Set the Webot Preffered Velocities for Drones." alt="" coords="397,5,629,47"/>
+<area shape="rect" href="classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa" title="Get the New Velocities for the drones." alt="" coords="123,13,349,39"/>
 <area shape="rect" href="orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,13,75,39"/>
 </map>
 </div>
@@ -440,8 +557,8 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a3cc783a889d771ec07c99ffb5588d859"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cc783a889d771ec07c99ffb5588d859">&#9670;&nbsp;</a></span>droneGoals</h2>
+<a id="a02ee84a733ab9936d1836e83dc1a21ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ee84a733ab9936d1836e83dc1a21ba">&#9670;&nbsp;</a></span>drone_goals_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,7 +567,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;RVO::Vector3&gt; Orchestrator::droneGoals</td>
+          <td class="memname">std::vector&lt;RVO::Vector3&gt; Orchestrator::drone_goals_</td>
         </tr>
       </table>
   </td>
@@ -460,10 +577,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Vector representing Goals of the drones. </p>
+
 </div>
 </div>
-<a id="a2962e79c443a9fd1b1a395e60cb1b058"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2962e79c443a9fd1b1a395e60cb1b058">&#9670;&nbsp;</a></span>dronePreferredVelocities</h2>
+<a id="a6b60a0e2f9c09ef00e3e9eb1c3c99ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b60a0e2f9c09ef00e3e9eb1c3c99ed5">&#9670;&nbsp;</a></span>drone_preferred_velocities_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -472,7 +591,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;RVO::Vector3&gt; Orchestrator::dronePreferredVelocities</td>
+          <td class="memname">std::vector&lt;RVO::Vector3&gt; Orchestrator::drone_preferred_velocities_</td>
         </tr>
       </table>
   </td>
@@ -482,10 +601,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Vectors representing the preferred velocities of the drones. </p>
+
 </div>
 </div>
-<a id="a486e00d2913020928da769ec96587e24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a486e00d2913020928da769ec96587e24">&#9670;&nbsp;</a></span>numDrones</h2>
+<a id="a6f138c4b71a2c5ebda4199605b352707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f138c4b71a2c5ebda4199605b352707">&#9670;&nbsp;</a></span>num_drones_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -494,7 +615,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t Orchestrator::numDrones</td>
+          <td class="memname">size_t Orchestrator::num_drones_</td>
         </tr>
       </table>
   </td>
@@ -504,10 +625,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Number of drones being managed. </p>
+
 </div>
 </div>
-<a id="aa7f0a2be7fcddd47f276b1961edaeca6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7f0a2be7fcddd47f276b1961edaeca6">&#9670;&nbsp;</a></span>simulator</h2>
+<a id="ac62a1077a6013849955311b798d6823d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62a1077a6013849955311b798d6823d">&#9670;&nbsp;</a></span>simulator_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -516,7 +639,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">RVO::RVOSimulator* Orchestrator::simulator</td>
+          <td class="memname">RVO::RVOSimulator* Orchestrator::simulator_</td>
         </tr>
       </table>
   </td>
@@ -525,6 +648,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Pointer to the RVO Simulator. </p>
 
 </div>
 </div>

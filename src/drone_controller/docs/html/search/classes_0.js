@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['helperfunctionstest_55',['HelperFunctionsTest',['../classHelperFunctionsTest.html',1,'']]]
+  ['dronemanager_49',['DroneManager',['../classDroneManager.html',1,'']]]
 ];

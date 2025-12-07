@@ -6,7 +6,7 @@ This directory contains unit tests and integration tests for the drone_controlle
 
 ### Unit Tests
 - **helper_functions_test.cpp**: Tests for CSV parsing and utility functions
-  - Tests `getGoalsForLetter()` function
+  - Tests `GetGoalsForLetter()` function
   - Tests file I/O and error handling
   - Tests case-insensitive letter matching
 

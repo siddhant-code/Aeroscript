@@ -1,0 +1,4 @@
+<map id="Orchestrator::SetWebotDroneGoals" name="Orchestrator::SetWebotDroneGoals">
+<area shape="rect" id="node1" title="Set the Webot Drone Goals." alt="" coords="5,5,217,47"/>
+<area shape="rect" id="node2" href="$classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="265,5,480,47"/>
+</map>

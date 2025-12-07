@@ -129,7 +129,6 @@ doxygen_add_docs(docs           # target name
 # Build libraries:
 add_library (drone_orchestrator
   src/orchestrator.cpp
-  src/my_dummy_lib_funct2.cpp
   )
 
 # Specify where the associated include files are
@@ -147,7 +146,7 @@ target_link_libraries (drone_orchestrator PUBLIC
   # list of libraries
   ${OpenCV_LIBRARIES}
   ${rclcpp_LIBRARIES}
-  RVO3D::RVO3D
+  ${RVO3D_LIBRARY}
   )
 
 
@@ -165,7 +164,6 @@ install (TARGETS
 # Install the header files
 install (FILES
   include/orchestrator.hpp
-  include/my_dummy_lib_funct2.hpp
   DESTINATION include
   )
 

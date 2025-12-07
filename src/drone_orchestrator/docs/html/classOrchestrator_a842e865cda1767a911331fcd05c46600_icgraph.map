@@ -1,0 +1,8 @@
+<map id="Orchestrator::GetWebotDronePosition" name="Orchestrator::GetWebotDronePosition">
+<area shape="rect" id="node1" title="Get the Webot Drone Position for a specific drone." alt="" coords="677,74,892,115"/>
+<area shape="rect" id="node2" href="$classOrchestrator.html#acd2867cf6288d4a7098fc537e0746139" title="Check if all drones have reached their goals." alt="" coords="411,5,615,32"/>
+<area shape="rect" id="node3" href="$classOrchestrator.html#ab92706c488d14f4a16413db20c2e4844" title="Set the Webot Drone Goals." alt="" coords="130,41,342,82"/>
+<area shape="rect" id="node4" href="$orchestrator__test_8cpp.html#a7442deb8cd17799929f37a9fdde13d7b" title=" " alt="" coords="5,107,75,133"/>
+<area shape="rect" id="node5" href="$classOrchestrator.html#a3a06137c96eaac49f760e5d36896b9ce" title="Set the Webot Preffered Velocities for Drones." alt="" coords="397,158,629,199"/>
+<area shape="rect" id="node6" href="$classOrchestrator.html#a29d10c954d6965106f90ce72b66df0aa" title="Get the New Velocities for the drones." alt="" coords="123,161,349,188"/>
+</map>

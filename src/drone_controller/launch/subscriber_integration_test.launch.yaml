@@ -17,12 +17,12 @@ launch:
 ################################################
 # 3.) Auxiliary nodes (i.e, nodes under test)
 ################################################
-# start listener (subscriber node under test)
+# start mavic_controller (subscriber node under test)
 # The CSV file path will be automatically resolved using ament_index_cpp
 # to the installed location: <pkg_share>/config/letters_AZ_cad.csv
 - node:
     pkg: "drone_controller"        # A package you want to test
-    exec: "listener"              # An executable in the package
+    exec: "mavic_controller"              # An executable in the package
     # csv_file parameter is optional - if not provided, uses installed location
 
 ############################################################################

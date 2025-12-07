@@ -1,0 +1,4 @@
+<map id="Orchestrator::SetWebotPrefferedVelocities" name="Orchestrator::SetWebotPrefferedVelocities">
+<area shape="rect" id="node1" title="Set the Webot Preffered Velocities for Drones." alt="" coords="5,5,237,47"/>
+<area shape="rect" id="node2" href="$classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="285,5,500,47"/>
+</map>

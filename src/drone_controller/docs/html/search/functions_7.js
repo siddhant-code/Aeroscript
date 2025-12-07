@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocity_5fcallback_87',['velocity_callback',['../classMinimalSubscriber.html#acb152c71155e211c20dc580045b64222',1,'MinimalSubscriber']]]
+  ['velocitycallback_78',['VelocityCallback',['../classDroneManager.html#ada7ff21aec20a43f173dedcbb02dfe52',1,'DroneManager']]]
 ];

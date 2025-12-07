@@ -1,0 +1,4 @@
+<map id="Orchestrator::ReachedGoals" name="Orchestrator::ReachedGoals">
+<area shape="rect" id="node1" title="Check if all drones have reached their goals." alt="" coords="5,13,209,39"/>
+<area shape="rect" id="node2" href="$classOrchestrator.html#a842e865cda1767a911331fcd05c46600" title="Get the Webot Drone Position for a specific drone." alt="" coords="257,5,472,47"/>
+</map>

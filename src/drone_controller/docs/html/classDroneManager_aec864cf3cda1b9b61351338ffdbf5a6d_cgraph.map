@@ -1,0 +1,7 @@
+<map id="DroneManager::DroneManager" name="DroneManager::DroneManager">
+<area shape="rect" id="node1" title=" " alt="" coords="5,53,228,80"/>
+<area shape="rect" id="node2" href="$dji__mavic__controller_8cpp.html#a8d4392dbcad259ea0442c3354b35e0be" title="Get the Goals For Letter object." alt="" coords="559,28,699,55"/>
+<area shape="rect" id="node3" href="$classDroneManager.html#a5fdc74af7d72e6683b32123e6e4b28fa" title="Callback function for drone position updates." alt="" coords="276,28,511,55"/>
+<area shape="rect" id="node4" href="$classDroneManager.html#a39783d5140afe30c4da2f42d4a23e2e9" title="Timer callback to update drone control commands." alt="" coords="283,79,503,105"/>
+<area shape="rect" id="node5" href="$classDroneManager.html#ada7ff21aec20a43f173dedcbb02dfe52" title="Callback function for drone velocity updates." alt="" coords="276,129,511,156"/>
+</map>

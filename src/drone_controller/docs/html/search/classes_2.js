@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['subscriberintegrationtestfixture_59',['SubscriberIntegrationTestFixture',['../classSubscriberIntegrationTestFixture.html',1,'']]]
+  ['mytestsfixture_51',['MyTestsFixture',['../classMyTestsFixture.html',1,'']]]
 ];

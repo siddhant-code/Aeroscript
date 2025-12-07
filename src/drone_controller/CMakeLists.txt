@@ -32,19 +32,6 @@ if(BUILD_TESTING)
   find_package(catch_ros2 REQUIRED) # add integration test support
   find_package(ament_cmake_gtest REQUIRED) # add unit test support
   
-  # Original integration test
-  add_executable(integration_test
-    test/integration_test.cpp)
-  ament_target_dependencies(integration_test
-    rclcpp
-    std_msgs
-    geometry_msgs 
-    RVO3D)
-  target_link_libraries(integration_test
-    catch_ros2::catch_ros2_with_node_main
-    drone_orchestrator)
-  catch_ros2_add_integration_test (Demo_Integration_Test
-    LAUNCH_FILE integration_test.launch.yaml)
   
   # New subscriber integration test
   add_executable(subscriber_integration_test
@@ -129,20 +116,13 @@ doxygen_add_docs(docs           # target name
   ${PROJECT_SOURCE_DIR}/test)
 
 # Add executables:
-add_executable(talker
-  src/publisher_member_function.cpp)
-add_executable(listener
-  src/subscriber_member_function.cpp)
 
-# Add executable dependencis:
-ament_target_dependencies(talker
-  rclcpp std_msgs geometry_msgs)
-target_link_libraries(talker
-  drone_orchestrator)
+add_executable(mavic_controller
+  src/dji_mavic_controller.cpp)
 
-ament_target_dependencies(listener
+ament_target_dependencies(mavic_controller
   rclcpp std_msgs geometry_msgs RVO3D)
-target_link_libraries(listener
+target_link_libraries(mavic_controller
   drone_orchestrator)
 
 ###################################
@@ -150,9 +130,7 @@ target_link_libraries(listener
 ###################################
 # Install executables:
 install(TARGETS
-  talker
-  listener
-  integration_test
+  mavic_controller
   subscriber_integration_test
   helper_functions_test
   DESTINATION lib/${PROJECT_NAME})

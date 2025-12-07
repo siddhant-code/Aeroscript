@@ -1,4 +1,4 @@
-<map id="Orchestrator::reachedGoals" name="Orchestrator::reachedGoals">
+<map id="Orchestrator::ReachedGoals" name="Orchestrator::ReachedGoals">
 <area shape="rect" id="node1" title=" " alt="" coords="5,13,205,39"/>
 <area shape="rect" id="node2" href="$classOrchestrator.html#acf428fd31b76f1829370b7d65591272c" title=" " alt="" coords="253,5,465,47"/>
 </map>

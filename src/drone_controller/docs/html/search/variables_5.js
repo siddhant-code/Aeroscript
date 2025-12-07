@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orchestrator_5f_96',['orchestrator_',['../classMinimalSubscriber.html#a4b15da8ae8d346a4b7d3cda8b6efd957',1,'MinimalSubscriber']]]
+  ['position_5fsubscribers_5f_87',['position_subscribers_',['../classDroneManager.html#a80403aba173eac7c56febdd652a1cd9a',1,'DroneManager']]]
 ];
