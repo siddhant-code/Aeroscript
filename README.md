@@ -88,7 +88,7 @@ For UML, Unit Tests and Integration tests:
 
 #### Deliverables:
 
-- [Final Project Presentation]()
+- [Final Project Presentation](https://www.canva.com/design/DAG69fWCCNk/VfHhR54ad4jJVgpzgXp5ow/edit?utm_content=DAG69fWCCNk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 - [Final Demo Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
 - [Updated Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
 - [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
