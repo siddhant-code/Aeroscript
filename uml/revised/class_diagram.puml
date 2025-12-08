@@ -1,0 +1,188 @@
+@startuml Class Diagram
+!theme plain
+skinparam classAttributeIconSize 0
+
+package "drone_orchestrator" {
+  class Orchestrator {
+    - RVO::RVOSimulator* simulator
+    - size_t numDrones
+    - std::vector<RVO::Vector3> dronePreferredVelocities
+    - std::vector<RVO::Vector3> droneGoals
+    --
+    + Orchestrator(initial_pos, timeStep, neighborDist, maxNeighbors, timeHorizon, radius, maxSpeed)
+    + SetWebotDronePositionsAndVelocities(positions, velocities) : void
+    + SetWebotPrefferedVelocities() : void
+    + SetWebotDroneGoals(goals) : void
+    + ReachedGoals() : bool
+    + GetNewVelocities() : std::vector<RVO::Vector3>
+    + GetWebotDroneGoal(drone_id) : RVO::Vector3
+    + GetWebotDronePosition(drone_id) : RVO::Vector3
+    + GetWebotDroneVelocity(drone_id) : RVO::Vector3
+    + GetDronePreferredVelocity(drone_id) : RVO::Vector3
+    + ~Orchestrator()
+  }
+  
+  class "RVO::RVOSimulator" {
+    + setTimeStep(timeStep) : void
+    + addAgent(position) : void
+    + getNumAgents() : size_t
+    + setAgentPosition(id, position) : void
+    + setAgentVelocity(id, velocity) : void
+    + setAgentPrefVelocity(id, velocity) : void
+    + getAgentPosition(id) : RVO::Vector3
+    + getAgentVelocity(id) : RVO::Vector3
+    + doStep() : void
+  }
+  
+  class "RVO::Vector3" {
+    + x() : float
+    + y() : float
+    + z() : float
+  }
+  
+  Orchestrator *-- "RVO::RVOSimulator" : uses
+  Orchestrator --> "RVO::Vector3" : uses
+  "RVO::RVOSimulator" --> "RVO::Vector3" : uses
+}
+
+package "drone_controller" {
+  class DroneManager {
+    - int num_drones_
+    - std::vector<POS_SUBSCRIBER> position_subscribers_
+    - std::vector<VEL_SUBSCRIBER> velocity_subscribers_
+    - std::vector<VEL_PUBLISHER> velocity_publishers_
+    - std::vector<RVO::Vector3> drone_positions_
+    - std::vector<RVO::Vector3> drone_velocities_
+    - TIMER timer_
+    - Orchestrator orchestrator_
+    - std::queue<char> letters_queue_
+    - std::vector<RVO::Vector3> goals_
+    --
+    + DroneManager()
+    - PositionCallback(msg, idx) : void
+    - VelocityCallback(msg, idx) : void
+    - TimerCallback() : void
+  }
+  
+  class "GetGoalsForLetter" <<function>> {
+    + GetGoalsForLetter(letter, csv_path) : std::vector<RVO::Vector3>
+  }
+  
+  DroneManager --> Orchestrator : uses
+  DroneManager --> "RVO::Vector3" : uses
+  DroneManager ..> "GetGoalsForLetter" : calls
+}
+
+package "mavic_simulation" {
+  class MavicDriver {
+    - robot
+    - timestep
+    - gps
+    - gyro
+    - imu
+    - propellers[4]
+    - target_twist : Twist
+    - vertical_ref : float
+    - linear_x_integral : float
+    - linear_y_integral : float
+    - node : rclpy.Node
+    --
+    + init(webots_node, properties) : void
+    + step() : void
+    - __cmd_vel_callback(twist) : void
+  }
+}
+
+package "ROS2 Messages" {
+  class "geometry_msgs::msg::PointStamped" {
+    + point : Point
+    + header : Header
+  }
+  
+  class "geometry_msgs::msg::Vector3" {
+    + x : float
+    + y : float
+    + z : float
+  }
+  
+  class "geometry_msgs::msg::Twist" {
+    + linear : Vector3
+    + angular : Vector3
+  }
+  
+  class "std_msgs::msg::String" {
+    + data : string
+  }
+}
+
+package "ROS2 Core" {
+  class "rclcpp::Node" {
+    + create_subscription() : Subscription
+    + create_publisher() : Publisher
+    + create_wall_timer() : Timer
+    + get_logger() : Logger
+    + declare_parameter() : void
+    + get_parameter() : Parameter
+  }
+  
+  class "rclcpp::Subscription" {
+    + receive() : void
+  }
+  
+  class "rclcpp::Publisher" {
+    + publish(msg) : void
+  }
+  
+  class "rclcpp::Timer" {
+    + callback() : void
+  }
+}
+
+package "Test Utilities" {
+  class "test_utils" <<namespace>> {
+    + createTestPositions(num_drones, spacing) : std::vector<RVO::Vector3>
+    + createTestGoals(num_drones, offset) : std::vector<RVO::Vector3>
+    + toPointStamped(pos, drone_id) : PointStamped
+    + toVector3Msg(vel) : Vector3
+    + positionsClose(pos1, pos2, threshold) : bool
+    + distance(pos1, pos2) : float
+  }
+  
+  class "HelperFunctionsTest" {
+    - test_csv_path : std::string
+    + SetUp() : void
+    + TearDown() : void
+  }
+}
+
+DroneManager --|> "rclcpp::Node" : extends
+DroneManager --> "geometry_msgs::msg::PointStamped" : subscribes
+DroneManager --> "geometry_msgs::msg::Vector3" : subscribes
+DroneManager --> "geometry_msgs::msg::Twist" : publishes
+MavicDriver --> "geometry_msgs::msg::Twist" : subscribes
+"HelperFunctionsTest" ..> "GetGoalsForLetter" : tests
+
+note right of Orchestrator
+  Uses RVO (Reciprocal Velocity Obstacles)
+  algorithm for multi-agent path planning
+  and collision avoidance
+end note
+
+note right of DroneManager
+  Main controller node that:
+  - Subscribes to drone positions/velocities
+  - Uses Orchestrator for path planning
+  - Publishes velocity commands
+  - Handles letter writing sequence
+  - Reads text parameter from launch file
+  - Loads CSV file for letter goals
+end note
+
+note right of "GetGoalsForLetter"
+  Standalone function for parsing
+  CSV file and extracting goals
+  for a specific letter
+end note
+
+@enduml
+

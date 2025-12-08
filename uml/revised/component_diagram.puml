@@ -1,0 +1,103 @@
+@startuml Component Diagram
+!theme plain
+
+package "Build System" {
+  component [CMake] as CMAKE
+  component [colcon] as COLCON
+}
+
+package "drone_orchestrator" {
+  component [Orchestrator Library] as ORCH_LIB
+  interface "Orchestrator API" as ORCH_API
+  component [Unit Tests] as ORCH_TEST
+}
+
+package "drone_controller" {
+  component [mavic_controller\n(DroneManager)] as MAVIC_CTRL
+  component [Unit Tests\n(helper_functions_test)] as UNIT_TEST
+  component [Integration Tests\n(subscriber_integration_test)] as INT_TEST
+  component [CSV Config] as CSV_CONFIG
+}
+
+package "mavic_simulation" {
+  component [MavicDriver] as DRIVER
+  component [robot_launch.py] as LAUNCH
+  component [URDF Model] as URDF
+  component [World Generator] as WORLD_GEN
+}
+
+package "ROS2 Infrastructure" {
+  component [ROS2 DDS] as DDS
+  database "Topics" {
+    [GPS Topics] as GPS_TOPIC
+    [Velocity Topics] as VEL_TOPIC
+    [Command Topics] as CMD_TOPIC
+  }
+  component [Parameters] as PARAMS {
+    [text parameter] as TEXT_PARAM
+    [csv_file parameter] as CSV_PARAM
+  }
+}
+
+package "Simulation" {
+  component [Webots] as WEBOTS
+}
+
+ORCH_LIB ..> ORCH_API : provides
+MAVIC_CTRL --> ORCH_API : uses
+MAVIC_CTRL --> GPS_TOPIC : subscribes
+MAVIC_CTRL --> VEL_TOPIC : subscribes
+MAVIC_CTRL --> CMD_TOPIC : publishes
+MAVIC_CTRL --> PARAMS : reads
+MAVIC_CTRL --> CSV_CONFIG : reads
+DRIVER --> CMD_TOPIC : subscribes
+DRIVER --> GPS_TOPIC : publishes
+DRIVER --> VEL_TOPIC : publishes
+DRIVER --> WEBOTS : controls
+LAUNCH --> DRIVER : launches
+LAUNCH --> WEBOTS : launches
+LAUNCH --> MAVIC_CTRL : launches
+LAUNCH --> PARAMS : sets
+LAUNCH --> WORLD_GEN : calls
+WORLD_GEN --> WEBOTS : generates world
+URDF --> WEBOTS : defines model
+
+ORCH_TEST --> ORCH_LIB : tests
+UNIT_TEST --> CSV_CONFIG : tests
+INT_TEST --> MAVIC_CTRL : tests
+
+CMAKE --> ORCH_LIB : builds
+COLCON --> MAVIC_CTRL : builds
+COLCON --> DRIVER : builds
+
+DDS --> GPS_TOPIC : manages
+DDS --> VEL_TOPIC : manages
+DDS --> CMD_TOPIC : manages
+
+note right of ORCH_LIB
+  Stand-alone C++ library
+  Uses RVO3D for path planning
+end note
+
+note right of MAVIC_CTRL
+  Main control node (DroneManager)
+  Coordinates multiple drones
+  Handles letter writing sequence
+  Reads text and csv_file parameters
+end note
+
+note right of DRIVER
+  Webots plugin
+  Controls individual drone
+  Reads sensors, controls propellers
+end note
+
+note right of LAUNCH
+  Python launch file
+  Generates world with N drones
+  Sets text and csv_file parameters
+  Default text: "HEY"
+end note
+
+@enduml
+
