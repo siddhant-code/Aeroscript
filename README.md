@@ -74,16 +74,25 @@ For UML, Unit Tests and Integration tests:
 
 - Madhav (Driver), Siddhant (Navigator)
 
-### Phase-2:
-
-- Migrating drone-simulation package from python to cpp
-- Code clean up
-
 #### Deliverables:
 
 - [Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
 - [Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
 - [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+
+
+### Phase-2:
+
+- Migrating drone-simulation package from Python to CPP
+- CI/CD Pipeline, Documentations
+
+#### Deliverables:
+
+- [Final Project Presentation]()
+- [Final Demo Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
+- [Updated Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
+- [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+
 
 ## Prerequisites
 
@@ -179,7 +188,7 @@ VERBOSE=1 colcon build --event-handlers console_cohesion+
 
 ```bash
 source install/setup.bash
-ros2 launch mavic_simulation robot_launch.py text:=HELLO
+ros2 launch mavic_simulation robot_launch.py text:=HI
 ```
 
 This will:
@@ -290,19 +299,21 @@ UML diagrams are available in `uml/` directory. To regenerate:
 cd src/uml
 java -jar plantuml.jar -tpng *.puml
 ```
+**Initial UML** can be found in `uml/initial/` directory
+**Revised UML** can be found in `uml/revised/` directory
 
 Available diagrams:
 - Class Diagram
-- Component Diagram
-- Sequence Diagram
 - Activity Diagram
+- Sequence Diagram
+- Component Diagram
 - Dependency Graph
 
-![Class UML](./uml/initial/Class%20Diagram.png)
-![Activity UML](./uml/initial/Activity%20Diagram.png)
-![Sequence UML](./uml/initial/Sequence%20Diagram.png)
-![Component UML](./uml/initial/Component%20Diagram.png)
-![Dependency UML](./uml/initial/Dependency%20Graph.png)
+![Class UML](./uml/revised/Class%20Diagram.png)
+![Activity UML](./uml/revised/Activity%20Diagram.png)
+![Sequence UML](./uml/revised/Sequence%20Diagram.png)
+![Component UML](./uml/revised/Component%20Diagram.png)
+![Dependency UML](./uml/revised/Dependency%20Graph.png)
 
 ### Generate Dependency Graph
 
@@ -310,6 +321,7 @@ Available diagrams:
 colcon graph --dot | dot -Tpng -o depGraph.png
 open depGraph.png
 ```
+![depGraph](./depGraph.png)
 
 ## Project Structure
 
