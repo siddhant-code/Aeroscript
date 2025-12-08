@@ -18,8 +18,9 @@
 
 import os
 import launch
-from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PythonExpression, TextSubstitution
+from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.conditions import IfCondition
 from launch.substitutions.path_join_substitution import PathJoinSubstitution
 from launch import LaunchDescription
 from ament_index_python.packages import get_package_share_directory
@@ -125,6 +126,21 @@ def generate_launch_description():
                 default_value="updated_world.wbt",
                 description="Choose one of the world files from `/mavic_simulation/worlds` directory",
             ),
+            DeclareLaunchArgument(
+                "text",
+                default_value="HEY",
+                description="Text string to be written by the drones",
+            ),
+            DeclareLaunchArgument(
+                "record_bag",
+                default_value="false",
+                description="Whether to record all ROS topics to a bag file",
+            ),
+            DeclareLaunchArgument(
+                "bag_name",
+                default_value="aeroscript_bag",
+                description="Name of the bag file to record (without extension)",
+            ),
             webots,
             webots._supervisor,
             # This action will kill all nodes once the Webots simulation has exited
@@ -152,10 +168,38 @@ def generate_launch_description():
         package="drone_controller",
         executable="mavic_controller",
         parameters=[
-            {"text": LaunchConfiguration("text", default="HI")},
+            {"text": LaunchConfiguration("text")},
             {"csv_file": LaunchConfiguration("csv_file", default=csv_path)},
         ],
     )
     ld.add_action(drone_controller)
+
+    # Get workspace root directory (assuming launch is run from workspace root)
+    # Calculate path relative to launch file location
+    launch_file_dir = os.path.dirname(os.path.abspath(__file__))
+    # Go up from launch/ to mavic_simulation/ to src/ to drone-simulation/ to src/ to workspace root
+    workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(launch_file_dir)))))
+    results_dir = os.path.join(workspace_root, "results")
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Bag recording action (conditional)
+    # Record all topics except camera topics (they are heavy)
+    bag_name = LaunchConfiguration("bag_name")
+    bag_record = ExecuteProcess(
+        cmd=[
+            "ros2", "bag", "record",
+            "-a",  # Record all topics
+            "-x", ".*camera.*",  # Exclude topics matching camera pattern
+            "-o", PathJoinSubstitution([TextSubstitution(text=results_dir), bag_name])
+        ],
+        name="ros2_bag_record",
+        output="screen",
+        condition=IfCondition(
+            PythonExpression([
+                "'", LaunchConfiguration("record_bag"), "' == 'true'"
+            ])
+        )
+    )
+    ld.add_action(bag_record)
 
     return ld

@@ -1,0 +1,71 @@
+@startuml Activity Diagram
+!theme plain
+start
+
+:Initialize System;
+:Launch robot_launch.py;
+:Declare launch arguments\n(text="HEY", world="updated_world.wbt");
+:Generate world file with N drones\n(20 by default);
+:Launch Webots Simulation;
+:Create N MavicDriver instances;
+:Set ROS2 parameters\n(text, csv_file);
+:Initialize DroneManager node;
+:Read text parameter from launch;
+:Parse text into letter queue;
+:Read csv_file parameter\n(or use default path);
+:Load goals for first letter\nfrom CSV using GetGoalsForLetter();
+:Initialize Orchestrator with\ninitial drone positions;
+
+repeat
+    :Read GPS positions from all drones;
+    :Read velocities from all drones;
+    :Update Orchestrator with positions/velocities;
+    :Set current goals in Orchestrator;
+    
+    :Calculate preferred velocities;
+    note right
+        For each drone:
+        - Compute vector to goal
+        - Normalize if distance > 1.0
+        - Set as preferred velocity
+    end note
+    
+    :Run RVO collision avoidance;
+    note right
+        RVO algorithm:
+        - Consider neighbors within radius
+        - Compute collision-free velocities
+        - Ensure max speed constraints
+    end note
+    
+    :Get new velocities from Orchestrator;
+    
+    :Check if all drones reached goals;
+    
+    if (All drones at goals?) then (yes)
+        :Publish zero velocity to all drones;
+        :Check if more letters in queue;
+        
+        if (More letters?) then (yes)
+            :Get next letter from queue;
+            :Load goals for next letter\nfrom CSV using GetGoalsForLetter();
+            :Set new goals in Orchestrator;
+        else (no)
+            :All letters completed;
+            stop
+        endif
+    else (no)
+        :Publish new velocities to all drones;
+        :MavicDriver receives cmd_vel;
+        :Update propeller speeds;
+        :Read sensors (GPS, IMU, Gyro);
+        :Publish updated sensor data;
+    endif
+    
+repeat while (System running?) is (yes)
+->no;
+
+stop
+
+@enduml
+

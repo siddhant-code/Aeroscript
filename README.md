@@ -4,12 +4,6 @@
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
-
-https://github.com/user-attachments/assets/7ad5e0e5-fb3a-4d3d-b3e5-acac6c22b7f8
-
-
-
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -74,16 +68,25 @@ For UML, Unit Tests and Integration tests:
 
 - Madhav (Driver), Siddhant (Navigator)
 
-### Phase-2:
-
-- Migrating drone-simulation package from python to cpp
-- Code clean up
-
 #### Deliverables:
 
 - [Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
 - [Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
 - [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+
+
+### Phase-2:
+
+- Migrating drone-simulation package from Python to CPP
+- CI/CD Pipeline, Documentations
+
+#### Deliverables:
+
+- [Final Project Presentation](https://www.canva.com/design/DAG69fWCCNk/VfHhR54ad4jJVgpzgXp5ow/edit?utm_content=DAG69fWCCNk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [Final Demo Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
+- [Updated Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
+- [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+
 
 ## Prerequisites
 
@@ -179,13 +182,62 @@ VERBOSE=1 colcon build --event-handlers console_cohesion+
 
 ```bash
 source install/setup.bash
-ros2 launch mavic_simulation robot_launch.py text:=HELLO
+ros2 launch mavic_simulation robot_launch.py text:=HI
 ```
 
 This will:
 - Launch Webots simulation with Mavic drones
 - Start MavicDriver nodes for each drone
 - Enable ROS2 topic communication
+
+### 2. Launch Parameters
+
+The launch file supports several parameters:
+
+- **`text`** (default: `"HEY"`): Text string to be written by the drones
+- **`record_bag`** (default: `false`): Enable/disable ROS2 bag recording
+- **`bag_name`** (default: `"aeroscript_bag"`): Name of the bag file (without extension)
+
+**Example with custom text:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HI"
+```
+
+**Example with all parameters:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HI" record_bag:=true bag_name:=my_test_run
+```
+
+### 3. ROS2 Bag Recording
+
+You can record all ROS topics during simulation for later analysis. The bag recording feature:
+
+- Records all topics except camera topics (to reduce file size)
+- Saves bags in the `results/` directory
+- Automatically stops when the simulation exits
+
+**Enable bag recording:**
+```bash
+ros2 launch mavic_simulation robot_launch.py record_bag:=true
+```
+
+**Custom bag name:**
+```bash
+ros2 launch mavic_simulation robot_launch.py record_bag:=true bag_name:=experiment_1
+```
+
+**With text parameter:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HELLO" record_bag:=true bag_name:=hello_test
+```
+
+The bag file will be saved in `results/<bag_name>/` directory. You can replay the bag later using:
+
+```bash
+ros2 bag play results/<bag_name>
+```
+
+**Note:** Camera topics are excluded from recording by default as they generate large amounts of data. If you need camera data, you can modify the launch file to remove the exclusion filter.
 
 ## Testing
 
@@ -290,19 +342,21 @@ UML diagrams are available in `uml/` directory. To regenerate:
 cd src/uml
 java -jar plantuml.jar -tpng *.puml
 ```
+**Initial UML** can be found in `uml/initial/` directory
+**Revised UML** can be found in `uml/revised/` directory
 
 Available diagrams:
 - Class Diagram
-- Component Diagram
-- Sequence Diagram
 - Activity Diagram
+- Sequence Diagram
+- Component Diagram
 - Dependency Graph
 
-![Class UML](./uml/initial/Class%20Diagram.png)
-![Activity UML](./uml/initial/Activity%20Diagram.png)
-![Sequence UML](./uml/initial/Sequence%20Diagram.png)
-![Component UML](./uml/initial/Component%20Diagram.png)
-![Dependency UML](./uml/initial/Dependency%20Graph.png)
+![Class UML](./uml/revised/Class%20Diagram.png)
+![Activity UML](./uml/revised/Activity%20Diagram.png)
+![Sequence UML](./uml/revised/Sequence%20Diagram.png)
+![Component UML](./uml/revised/Component%20Diagram.png)
+![Dependency UML](./uml/revised/Dependency%20Graph.png)
 
 ### Generate Dependency Graph
 
@@ -310,6 +364,7 @@ Available diagrams:
 colcon graph --dot | dot -Tpng -o depGraph.png
 open depGraph.png
 ```
+![depGraph](./depGraph.png)
 
 ## Project Structure
 

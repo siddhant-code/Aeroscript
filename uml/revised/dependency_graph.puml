@@ -1,0 +1,109 @@
+@startuml Dependency Graph
+!theme plain
+
+package "External Dependencies" {
+  [RVO3D Library] as RVO
+  [ROS2 Humble] as ROS2
+  [OpenCV] as OCV
+  [GoogleTest] as GTEST
+  [Catch2/catch_ros2] as CATCH2
+  [Webots] as WEBOTS
+  [Python 3] as PYTHON
+  [CMake] as CMAKE
+  [ament_index_cpp] as AMENT_IDX
+}
+
+package "drone_orchestrator" {
+  [orchestrator.hpp] as ORCH_H
+  [orchestrator.cpp] as ORCH_C
+  [my_dummy_lib_funct2.hpp] as DUMMY_H
+  [my_dummy_lib_funct2.cpp] as DUMMY_C
+  [test.cpp] as TEST_CPP
+}
+
+package "drone_controller" {
+  [dji_mavic_controller.cpp] as DJI_CPP
+  [test/helper_functions_test.cpp] as HELPER_TEST
+  [test/subscriber_integration_test.cpp] as SUB_INT_TEST
+  [test/integration_test.cpp] as INT_TEST
+  [test/test_utils.hpp] as TEST_UTILS
+  [config/letters_AZ_cad.csv] as CSV_FILE
+}
+
+package "mavic_simulation" {
+  [mavic_driver.py] as DRIVER_PY
+  [robot_launch.py] as LAUNCH_PY
+  [mavic_webots.urdf] as URDF
+}
+
+' Orchestrator dependencies
+ORCH_H --> RVO
+ORCH_C --> ORCH_H
+ORCH_C --> RVO
+DUMMY_C --> ORCH_H
+TEST_CPP --> ORCH_H
+TEST_CPP --> DUMMY_H
+TEST_CPP --> GTEST
+
+' Controller dependencies
+DJI_CPP --> ROS2
+DJI_CPP --> ORCH_H
+DJI_CPP --> AMENT_IDX
+DJI_CPP --> CSV_FILE
+HELPER_TEST --> ROS2
+HELPER_TEST --> ORCH_H
+HELPER_TEST --> GTEST
+HELPER_TEST --> CSV_FILE
+SUB_INT_TEST --> ROS2
+SUB_INT_TEST --> ORCH_H
+SUB_INT_TEST --> CATCH2
+INT_TEST --> ROS2
+INT_TEST --> CATCH2
+TEST_UTILS --> ROS2
+TEST_UTILS --> RVO
+
+' Simulation dependencies
+DRIVER_PY --> ROS2
+DRIVER_PY --> PYTHON
+DRIVER_PY --> WEBOTS
+LAUNCH_PY --> ROS2
+LAUNCH_PY --> PYTHON
+LAUNCH_PY --> DJI_CPP
+URDF --> WEBOTS
+
+' Package dependencies
+[drone_controller] --> [drone_orchestrator]
+[drone_controller] --> AMENT_IDX
+[drone_orchestrator] --> RVO
+[drone_orchestrator] --> ROS2
+[drone_orchestrator] --> OCV
+[mavic_simulation] --> ROS2
+[mavic_simulation] --> WEBOTS
+[mavic_simulation] --> [drone_controller]
+
+note right of [drone_orchestrator]
+  Stand-alone C++ library
+  Can be built independently
+end note
+
+note right of [drone_controller]
+  ROS2 package
+  Depends on drone_orchestrator
+  Uses ament_index_cpp for
+  package resource resolution
+end note
+
+note right of [mavic_simulation]
+  ROS2 Python package
+  Webots simulation environment
+  Launches mavic_controller node
+end note
+
+note right of CSV_FILE
+  Contains letter goals (A-Z)
+  Installed to share/drone_controller/config/
+  Loaded via GetGoalsForLetter()
+end note
+
+@enduml
+

@@ -16,6 +16,8 @@ msg/_*.py
 build_isolated/
 devel_isolated/
 
+results/sample_bag/
+
 RVO2-3D/
 install/
 log/
