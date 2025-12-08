@@ -64,7 +64,7 @@ std::vector<RVO::Vector3> GetGoalsForLetter(char letter,
     // read letter
     std::getline(ss, token, ',');
     row_letter = token[0];
-    if (std::toupper(row_letter) != letter) continue;
+    if (row_letter != letter) continue;
     // read x
     std::getline(ss, token, ',');
     x = std::stof(token) - 20.0f;  // center the letter
