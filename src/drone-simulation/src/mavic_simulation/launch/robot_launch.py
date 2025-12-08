@@ -125,6 +125,11 @@ def generate_launch_description():
                 default_value="updated_world.wbt",
                 description="Choose one of the world files from `/mavic_simulation/worlds` directory",
             ),
+            DeclareLaunchArgument(
+                "text",
+                default_value="HEY",
+                description="Text string to be written by the drones",
+            ),
             webots,
             webots._supervisor,
             # This action will kill all nodes once the Webots simulation has exited
@@ -152,7 +157,7 @@ def generate_launch_description():
         package="drone_controller",
         executable="mavic_controller",
         parameters=[
-            {"text": LaunchConfiguration("text", default="HI")},
+            {"text": LaunchConfiguration("text")},
             {"csv_file": LaunchConfiguration("csv_file", default=csv_path)},
         ],
     )
