@@ -4,6 +4,9 @@
 
 A ROS2-based multi-drone coordination system that enables multiple drones to collaboratively write letters in the air using RVO (Reciprocal Velocity Obstacles) path planning. The system coordinates multiple drones through collision avoidance algorithms to achieve complex formation flying tasks.
 
+https://github.com/user-attachments/assets/9c2d9d42-caf5-4f1a-95e9-cd3728ce0f5e
+
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -79,6 +82,15 @@ For UML, Unit Tests and Integration tests:
 
 - Migrating drone-simulation package from Python to CPP
 - CI/CD Pipeline, Documentations
+
+For Updating Simulation and Code Clean-up:
+
+- Siddhant (Driver), Madhav (Navigator)
+
+For Updating Launch files, commenting, UML, README and documentation:
+
+- Madhav (Driver), Siddhant (Navigator)
+
 
 #### Deliverables:
 
