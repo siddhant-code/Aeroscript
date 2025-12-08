@@ -196,6 +196,55 @@ This will:
 - Start MavicDriver nodes for each drone
 - Enable ROS2 topic communication
 
+### 2. Launch Parameters
+
+The launch file supports several parameters:
+
+- **`text`** (default: `"HEY"`): Text string to be written by the drones
+- **`record_bag`** (default: `false`): Enable/disable ROS2 bag recording
+- **`bag_name`** (default: `"aeroscript_bag"`): Name of the bag file (without extension)
+
+**Example with custom text:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HI"
+```
+
+**Example with all parameters:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HI" record_bag:=true bag_name:=my_test_run
+```
+
+### 3. ROS2 Bag Recording
+
+You can record all ROS topics during simulation for later analysis. The bag recording feature:
+
+- Records all topics except camera topics (to reduce file size)
+- Saves bags in the `results/` directory
+- Automatically stops when the simulation exits
+
+**Enable bag recording:**
+```bash
+ros2 launch mavic_simulation robot_launch.py record_bag:=true
+```
+
+**Custom bag name:**
+```bash
+ros2 launch mavic_simulation robot_launch.py record_bag:=true bag_name:=experiment_1
+```
+
+**With text parameter:**
+```bash
+ros2 launch mavic_simulation robot_launch.py text:="HELLO" record_bag:=true bag_name:=hello_test
+```
+
+The bag file will be saved in `results/<bag_name>/` directory. You can replay the bag later using:
+
+```bash
+ros2 bag play results/<bag_name>
+```
+
+**Note:** Camera topics are excluded from recording by default as they generate large amounts of data. If you need camera data, you can modify the launch file to remove the exclusion filter.
+
 ## Testing
 
 ### Build Tests with Coverage
