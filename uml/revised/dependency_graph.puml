@@ -8,101 +8,117 @@ package "External Dependencies" {
   [GoogleTest] as GTEST
   [Catch2/catch_ros2] as CATCH2
   [Webots] as WEBOTS
-  [Python 3] as PYTHON
   [CMake] as CMAKE
-  [ament_index_cpp] as AMENT_IDX
+  [ament_index_cpp] as AMENT_INDEX
 }
 
 package "drone_orchestrator" {
   [orchestrator.hpp] as ORCH_H
   [orchestrator.cpp] as ORCH_C
-  [my_dummy_lib_funct2.hpp] as DUMMY_H
-  [my_dummy_lib_funct2.cpp] as DUMMY_C
-  [test.cpp] as TEST_CPP
+  [orchestrator_test.cpp] as TEST_CPP
+  [CMakeLists.txt] as ORCH_CMAKE
 }
 
 package "drone_controller" {
-  [dji_mavic_controller.cpp] as DJI_CPP
-  [test/helper_functions_test.cpp] as HELPER_TEST
-  [test/subscriber_integration_test.cpp] as SUB_INT_TEST
-  [test/integration_test.cpp] as INT_TEST
-  [test/test_utils.hpp] as TEST_UTILS
-  [config/letters_AZ_cad.csv] as CSV_FILE
+  [dji_mavic_controller.cpp] as CONTROLLER_CPP
+  [helper_functions_test.cpp] as HELPER_TEST
+  [integration_test.cpp] as INT_TEST
+  [subscriber_integration_test.cpp] as SUB_INT_TEST
+  [CMakeLists.txt] as CTRL_CMAKE
+  [letters_AZ_cad.csv] as CSV_FILE
+  [subscriber_integration_test.launch.yaml] as INT_LAUNCH
 }
 
 package "mavic_simulation" {
-  [mavic_driver.py] as DRIVER_PY
+  [MavicDriver.hpp] as DRIVER_H
+  [MavicDriver.cpp] as DRIVER_CPP
   [robot_launch.py] as LAUNCH_PY
   [mavic_webots.urdf] as URDF
+  [mavic_driver.xml] as DRIVER_XML
+  [CMakeLists.txt] as SIM_CMAKE
 }
 
 ' Orchestrator dependencies
 ORCH_H --> RVO
 ORCH_C --> ORCH_H
 ORCH_C --> RVO
-DUMMY_C --> ORCH_H
 TEST_CPP --> ORCH_H
-TEST_CPP --> DUMMY_H
 TEST_CPP --> GTEST
+ORCH_CMAKE --> CMAKE
+ORCH_CMAKE --> RVO
+ORCH_CMAKE --> GTEST
 
 ' Controller dependencies
-DJI_CPP --> ROS2
-DJI_CPP --> ORCH_H
-DJI_CPP --> AMENT_IDX
-DJI_CPP --> CSV_FILE
-HELPER_TEST --> ROS2
+CONTROLLER_CPP --> ROS2
+CONTROLLER_CPP --> ORCH_H
+CONTROLLER_CPP --> AMENT_INDEX
 HELPER_TEST --> ORCH_H
 HELPER_TEST --> GTEST
-HELPER_TEST --> CSV_FILE
-SUB_INT_TEST --> ROS2
-SUB_INT_TEST --> ORCH_H
-SUB_INT_TEST --> CATCH2
 INT_TEST --> ROS2
 INT_TEST --> CATCH2
-TEST_UTILS --> ROS2
-TEST_UTILS --> RVO
+SUB_INT_TEST --> ROS2
+SUB_INT_TEST --> CATCH2
+SUB_INT_TEST --> ORCH_H
+CTRL_CMAKE --> CMAKE
+CTRL_CMAKE --> ROS2
+CTRL_CMAKE --> ORCH_H
+CTRL_CMAKE --> AMENT_INDEX
+CTRL_CMAKE --> CATCH2
+INT_LAUNCH --> ROS2
 
 ' Simulation dependencies
-DRIVER_PY --> ROS2
-DRIVER_PY --> PYTHON
-DRIVER_PY --> WEBOTS
+DRIVER_H --> ROS2
+DRIVER_H --> WEBOTS
+DRIVER_CPP --> DRIVER_H
+DRIVER_CPP --> ROS2
+DRIVER_CPP --> WEBOTS
 LAUNCH_PY --> ROS2
-LAUNCH_PY --> PYTHON
-LAUNCH_PY --> DJI_CPP
+LAUNCH_PY --> WEBOTS
 URDF --> WEBOTS
+DRIVER_XML --> WEBOTS
+SIM_CMAKE --> CMAKE
+SIM_CMAKE --> ROS2
+SIM_CMAKE --> WEBOTS
 
 ' Package dependencies
 [drone_controller] --> [drone_orchestrator]
-[drone_controller] --> AMENT_IDX
+[drone_controller] --> ROS2
+[drone_controller] --> AMENT_INDEX
+[drone_controller] --> CATCH2
 [drone_orchestrator] --> RVO
-[drone_orchestrator] --> ROS2
-[drone_orchestrator] --> OCV
 [mavic_simulation] --> ROS2
 [mavic_simulation] --> WEBOTS
-[mavic_simulation] --> [drone_controller]
+
+' File dependencies
+CONTROLLER_CPP --> CSV_FILE
+HELPER_TEST --> CSV_FILE
+SUB_INT_TEST --> CSV_FILE
+INT_LAUNCH --> CSV_FILE
 
 note right of [drone_orchestrator]
   Stand-alone C++ library
   Can be built independently
+  No ROS2 dependencies in core logic
 end note
 
 note right of [drone_controller]
   ROS2 package
   Depends on drone_orchestrator
-  Uses ament_index_cpp for
-  package resource resolution
+  Uses ament_index_cpp for resource location
+  Integration tests use catch_ros2
 end note
 
 note right of [mavic_simulation]
-  ROS2 Python package
+  ROS2 C++ package
   Webots simulation environment
-  Launches mavic_controller node
+  C++ MavicDriver plugin
+  Python launch file
 end note
 
 note right of CSV_FILE
-  Contains letter goals (A-Z)
-  Installed to share/drone_controller/config/
-  Loaded via GetGoalsForLetter()
+  Letter waypoint patterns
+  Format: Letter, X, Y, Z
+  Installed to package share/config/
 end note
 
 @enduml

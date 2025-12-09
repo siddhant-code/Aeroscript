@@ -4,21 +4,31 @@
 actor User
 participant "Launch File\n(robot_launch.py)" as Launch
 participant "Webots\nSimulator" as Webots
-participant "MavicDriver\n(Python)" as Driver
+participant "MavicDriver\n(C++ Plugin)" as Driver
 participant "ROS2 Topics" as Topics
-participant "ROS2 Parameters" as Params
-participant "DroneManager\n(mavic_controller)" as Controller
+participant "DroneManager\n(drone_controller)" as Controller
 participant "Orchestrator\n(RVO)" as Orchestrator
 participant "CSV File" as CSV
 
-User -> Launch: ros2 launch mavic_simulation robot_launch.py\n[text:="HELLO" (optional)]
+User -> Launch: ros2 launch mavic_simulation robot_launch.py\ntext:=HEY record_bag:=true
+
 Launch -> Launch: DeclareLaunchArgument("text", default="HEY")
-Launch -> Launch: DeclareLaunchArgument("world", default="updated_world.wbt")
-Launch -> Launch: Generate world file with N drones (20 default)
-Launch -> Webots: Start simulation with generated world
+Launch -> Launch: DeclareLaunchArgument("record_bag", default="false")
+Launch -> Launch: DeclareLaunchArgument("bag_name", default="aeroscript_bag")
+Launch -> Launch: Generate world file with N drones\n(based on text length)
+Launch -> Webots: Start simulation with updated_world.wbt
 Launch -> Driver: Initialize MavicDriver for each drone
-Launch -> Params: Set text parameter (from launch arg or default)
-Launch -> Params: Set csv_file parameter (from launch arg or default)
+Launch -> Controller: Launch mavic_controller node\nwith text parameter
+Launch -> Launch: Optionally start ros2 bag record\n(if record_bag:=true)
+
+Controller -> Controller: Read "text" parameter (default: "WIND")
+Controller -> Controller: Parse text into letters_queue_
+Controller -> Controller: Read "csv_file" parameter
+Controller -> CSV: Load CSV file\n(ament_index_cpp or parameter path)
+CSV --> Controller: Return letter waypoints
+Controller -> Controller: GetGoalsForLetter(first_letter, csv_path)
+Controller -> Orchestrator: Initialize with initial positions
+Controller -> Orchestrator: SetWebotDroneGoals(goals_)
 
 loop For each drone
     Driver -> Topics: Subscribe to /Mavic_2_PRO_{ID}/cmd_vel
@@ -26,57 +36,73 @@ loop For each drone
     Driver -> Topics: Publish velocity to /Mavic_2_PRO_{ID}/gps/speed_vector
 end
 
-Launch -> Controller: Start mavic_controller node
-Controller -> Params: Read "text" parameter
-Controller -> Params: Read "csv_file" parameter
-Controller -> Controller: Parse text into letter queue
-Controller -> CSV: Load goals for first letter using GetGoalsForLetter()
-CSV --> Controller: Return goals for first letter
-Controller -> Controller: Initialize Orchestrator with initial positions
-Controller -> Orchestrator: SetWebotDroneGoals(goals)
 Controller -> Topics: Subscribe to GPS topics for all drones
 Controller -> Topics: Subscribe to velocity topics for all drones
 Controller -> Topics: Create publishers for cmd_vel topics
+Controller -> Controller: Create 8ms wall timer
 
-== Main Control Loop ==
+== Main Control Loop (125Hz) ==
 
 loop Every 8ms (timer callback)
     Topics -> Controller: GPS position updates (PointStamped)
     Topics -> Controller: Velocity updates (Vector3)
     
-    Controller -> Controller: Update drone_positions_ and drone_velocities_
+    Controller -> Controller: Update drone_positions_[idx]
+    Controller -> Controller: Update drone_velocities_[idx]
     Controller -> Orchestrator: SetWebotDronePositionsAndVelocities(positions, velocities)
-    Controller -> Orchestrator: SetWebotDroneGoals(goals)
-    Controller -> Orchestrator: GetNewVelocities()
+    Controller -> Orchestrator: SetWebotPrefferedVelocities()
     
     activate Orchestrator
-    Orchestrator -> Orchestrator: SetWebotPrefferedVelocities()
     Orchestrator -> Orchestrator: Calculate preferred velocities toward goals
-    Orchestrator -> Orchestrator: simulator.doStep() (RVO collision avoidance)
-    Orchestrator -> Orchestrator: Get new velocities from simulator
+    note right of Orchestrator
+        For each drone:
+        - Compute vector: goal - position
+        - Normalize if distance > 1.0m
+        - Set as preferred velocity
+    end note
+    Orchestrator -> Orchestrator: simulator_->doStep()\n(RVO collision avoidance)
+    note right of Orchestrator
+        RVO algorithm:
+        - Consider neighbors within 3.0m
+        - Compute collision-free velocities
+        - Respect maxSpeed (0.5 m/s)
+        - Ensure safety within timeHorizon (3.5s)
+    end note
     Orchestrator --> Controller: Return new_velocities
     deactivate Orchestrator
     
-    Controller -> Orchestrator: Check if ReachedGoals()
+    Controller -> Orchestrator: ReachedGoals()
+    Orchestrator --> Controller: Return bool
     
     alt All drones reached goals
         Controller -> Topics: Publish zero velocity to all drones
-        Controller -> Controller: Check if more letters in queue
+        Controller -> Controller: Check letters_queue_
         
         alt More letters in queue
             Controller -> Controller: Get next letter from queue
-            Controller -> CSV: Load goals for next letter using GetGoalsForLetter()
-            CSV --> Controller: Return goals for next letter
+            Controller -> CSV: GetGoalsForLetter(next_letter, csv_path)
+            CSV --> Controller: Return new waypoints
             Controller -> Orchestrator: SetWebotDroneGoals(new_goals)
+            note right of Controller
+                Nearest-neighbor assignment
+                minimizes total travel distance
+            end note
         else No more letters
-            Controller -> Controller: Complete
+            Controller -> Controller: All letters completed
         end
     else Not at goals
         Controller -> Topics: Publish Twist messages to cmd_vel topics
+        note right of Controller
+            Convert RVO::Vector3 to Twist:
+            - linear.x = -velocity.x
+            - linear.y = -velocity.y
+            - linear.z = velocity.z
+        end note
         Topics -> Driver: Receive cmd_vel commands
         Driver -> Driver: Update target_twist
+        Driver -> Driver: PID control computation
         Driver -> Webots: Apply control to propellers
-        Webots -> Driver: Update sensor readings (GPS, IMU, Gyro)
+        Webots -> Driver: Update sensor readings\n(GPS, IMU, Gyro)
         Driver -> Topics: Publish updated GPS and velocity
     end
 end

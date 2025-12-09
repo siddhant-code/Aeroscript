@@ -1,101 +1,147 @@
-# Revised UML Diagrams for Drone System Architecture
+# Revised UML Diagrams for AeroScript
 
-This directory contains updated UML diagrams reflecting the current codebase structure after recent changes.
-
-## Changes from Initial Diagrams
-
-### Key Updates:
-1. **Class Renaming**: `MinimalSubscriber` → `DroneManager`
-2. **New Executable**: `mavic_controller` (main controller node)
-3. **Helper Function**: `GetGoalsForLetter()` is now a standalone function
-4. **Launch Parameters**: Added `text` parameter (default: "HEY") and `csv_file` parameter
-5. **Test Infrastructure**: Added unit tests (`helper_functions_test`) and integration tests (`subscriber_integration_test`)
-6. **Test Utilities**: New `test_utils.hpp` namespace with helper functions
-7. **Parameter Handling**: Uses `ament_index_cpp` for package resource resolution
-8. **Dynamic World Generation**: Launch file generates world files with configurable number of drones (default: 20)
+This directory contains updated UML diagrams reflecting the current implementation of the AeroScript multi-drone coordination system.
 
 ## Diagrams
 
 ### 1. Class Diagram (`class_diagram.puml`)
-Shows the updated class structure:
-- **DroneManager**: Main controller class (renamed from MinimalSubscriber)
+Shows the class structure and relationships in the system:
+- **Orchestrator**: Core class using RVO (Reciprocal Velocity Obstacles) for multi-agent path planning
+- **DroneManager**: ROS2 node (renamed from MinimalSubscriber) that coordinates multiple drones
+- **MavicDriver**: C++ Webots plugin for individual drone control
 - **GetGoalsForLetter**: Standalone function for CSV parsing
-- **Orchestrator**: Core RVO path planning class
-- **test_utils**: Namespace with test helper functions
-- **HelperFunctionsTest**: Unit test class for CSV parsing
+- **ROS2 Messages**: Message types used for communication
+- **RVO Classes**: RVO::RVOSimulator and RVO::Vector3 from RVO3D library
+
+**Key Updates:**
+- Class renamed from `MinimalSubscriber` to `DroneManager`
+- Updated method names to match Google C++ Style Guide
+- Added `GetGoalsForLetter` as standalone function
+- Updated MavicDriver to C++ implementation
+- Added ROS2 parameter handling
 
 ### 2. Component Diagram (`component_diagram.puml`)
-Illustrates system components:
-- **mavic_controller**: Main executable (DroneManager node)
-- **robot_launch.py**: Launch file with parameter support
-- **World Generator**: Dynamic world file generation
-- **Parameters**: ROS2 parameters (text, csv_file)
-- **CSV Config**: Letter goals configuration file
-- Updated test components (unit and integration tests)
+Illustrates system components and their interfaces:
+- **Build System**: CMake and colcon
+- **Software Packages**: drone_orchestrator, drone_controller, mavic_simulation
+- **ROS2 Infrastructure**: Topics, DDS, Parameters, Bag Recorder
+- **Simulation Components**: Webots, MavicDriver, World Generator
+- **Testing Components**: Unit tests, Integration tests
+
+**Key Updates:**
+- Added `mavic_controller` executable
+- Added World Generator component
+- Added ROS2 Parameters component
+- Added ROS2 Bag Recorder component
+- Added CSV Config component
+- Updated MavicDriver to C++ plugin
+- Updated test components
 
 ### 3. Sequence Diagram (`sequence_diagram.puml`)
-Shows the message flow:
-- Launch file parameter declaration and setting
-- CSV file loading via `GetGoalsForLetter()`
-- Parameter reading in DroneManager
-- Updated control loop with parameter-based CSV path resolution
+Shows the message flow and interaction between components:
+- System initialization sequence with launch arguments
+- Main control loop 
+- Communication between Webots, MavicDriver, ROS2 topics, Controller, and Orchestrator
+- Goal achievement and letter sequence handling
+- CSV file loading and parameter handling
+
+**Key Updates:**
+- Added launch argument declaration
+- Added CSV file loading sequence
+- Updated to show parameter reading in DroneManager
+- Added bag recording optional flow
+- Updated class names (DroneManager instead of MinimalSubscriber)
+- Added detailed RVO algorithm notes
 
 ### 4. Activity Diagram (`activity_diagram.puml`)
-Describes the control flow:
-- Launch argument declaration
-- Dynamic world generation
-- Parameter reading (text, csv_file)
-- CSV file loading for letter goals
-- Updated letter queue management
+Describes the control flow and decision logic:
+- System initialization steps
+- Launch argument handling
+- CSV file path resolution
+- Main control loop with RVO path planning
+- Goal checking and letter queue management
+- Sensor reading and actuator control flow
+- Bag recording conditional flow
+
+**Key Updates:**
+- Added launch argument declaration flow
+- Added dynamic world generation
+- Added parameter reading and CSV path resolution
+- Added bag recording conditional logic
+- Updated control flow to match current implementation
 
 ### 5. Dependency Graph (`dependency_graph.puml`)
-Shows dependencies:
-- **ament_index_cpp**: For package resource resolution
-- **Catch2/catch_ros2**: For integration tests
-- **test_utils.hpp**: Test utility functions
-- Updated file dependencies (dji_mavic_controller.cpp, helper_functions_test.cpp, etc.)
-- CSV file as a dependency
+Shows package and file dependencies:
+- External dependencies (RVO3D, ROS2, OpenCV, Webots, etc.)
+- Internal file dependencies within packages
+- Package-level dependencies
+- Test dependencies (GoogleTest, Catch2/catch_ros2)
+- Build system dependencies
+
+**Key Updates:**
+- Updated file names (dji_mavic_controller.cpp instead of subscriber_member_function.cpp)
+- Added ament_index_cpp dependency
+- Added Catch2/catch_ros2 for integration tests
+- Updated MavicDriver to C++ files
+- Added CSV file dependencies
+- Added launch file dependencies
 
 ## Generating Diagrams
 
 ### Prerequisites
 - Java (for PlantUML JAR)
-- PlantUML JAR file (copy from `../initial/plantuml.jar` or download)
+- PlantUML JAR file (included in this directory)
 
 ### Generate PNG images
 ```bash
 cd uml/revised
-java -jar ../initial/plantuml.jar -tpng *.puml
+java -jar plantuml.jar -tpng *.puml
 ```
 
 ### Generate SVG images
 ```bash
-java -jar ../initial/plantuml.jar -tsvg *.puml
+java -jar plantuml.jar -tsvg *.puml
 ```
 
 ### Generate all formats
 ```bash
-java -jar ../initial/plantuml.jar *.puml
+java -jar plantuml.jar *.puml
 ```
 
-## Architecture Updates
+## Editing Diagrams
 
-### Parameter System
-- **text parameter**: Specifies the text string to write (default: "HEY")
-- **csv_file parameter**: Path to CSV file with letter goals (default: package share directory)
+The `.puml` files are PlantUML source files. You can edit them with any text editor. PlantUML syntax documentation: https://plantuml.com/
 
-### CSV File Handling
-- CSV file is installed to `share/drone_controller/config/`
-- Path resolution uses `ament_index_cpp::get_package_share_directory()`
-- `GetGoalsForLetter()` function parses CSV and extracts goals for specific letters
+## Viewing Diagrams
 
-### Testing Infrastructure
-- **Unit Tests**: `helper_functions_test.cpp` tests CSV parsing
-- **Integration Tests**: `subscriber_integration_test.cpp` tests ROS2 node communication
-- **Test Utilities**: `test_utils.hpp` provides helper functions for testing
+- **PNG files**: Can be viewed with any image viewer
+- **PlantUML files**: Can be viewed with PlantUML plugins in:
+  - VS Code (PlantUML extension)
+  - IntelliJ IDEA
+  - Online at http://www.plantuml.com/plantuml/uml/
 
-### Launch File Enhancements
-- Dynamic world generation with configurable number of drones
-- Parameter support for text and CSV file paths
-- Automatic world file generation before simulation start
+## Architecture Overview
+
+The system consists of three main packages:
+
+1. **drone_orchestrator**: Stand-alone C++ library for multi-agent path planning using RVO algorithm
+2. **drone_controller**: ROS2 package that coordinates multiple drones, subscribes to sensor data, and publishes velocity commands
+3. **mavic_simulation**: ROS2 C++ package providing Webots simulation environment with MavicDriver for individual drone control
+
+The system enables multiple drones to collaboratively write letters in the air by:
+- Reading GPS positions and velocities from simulated drones
+- Using RVO algorithm for collision-free path planning
+- Publishing velocity commands to control drone movement
+- Managing a sequence of letters to write
+- Loading letter waypoints from CSV files
+- Supporting launch arguments for text input and bag recording
+
+## Key Features Documented
+
+- **MVC Architecture**: Model (Orchestrator), View (MavicDriver/Webots), Controller (DroneManager)
+- **RVO Algorithm**: Reciprocal Velocity Obstacles for collision avoidance
+- **CSV Waypoint Loading**: Letter patterns stored in CSV format
+- **ROS2 Parameters**: Configurable text input and CSV file paths
+- **Bag Recording**: Optional ROS2 bag recording with topic filtering
+- **Dynamic World Generation**: World file generated based on number of drones
 

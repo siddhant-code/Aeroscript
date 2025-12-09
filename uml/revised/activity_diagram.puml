@@ -2,31 +2,64 @@
 !theme plain
 start
 
-:Initialize System;
-:Launch robot_launch.py;
-:Declare launch arguments\n(text="HEY", world="updated_world.wbt");
-:Generate world file with N drones\n(20 by default);
+:User launches system with\nros2 launch command;
+
+:Launch file declares arguments:
+- text (default: "HEY")
+- record_bag (default: false)
+- bag_name (default: "aeroscript_bag")
+- world (default: "updated_world.wbt");
+
+:Generate world file dynamically\nbased on number of drones;
+
 :Launch Webots Simulation;
-:Create N MavicDriver instances;
-:Set ROS2 parameters\n(text, csv_file);
+
+:Create N MavicDriver instances\n(one per drone);
+
 :Initialize DroneManager node;
-:Read text parameter from launch;
-:Parse text into letter queue;
-:Read csv_file parameter\n(or use default path);
-:Load goals for first letter\nfrom CSV using GetGoalsForLetter();
+
+:Read "text" parameter from launch;
+
+:Parse text into letter queue\n(convert to uppercase);
+
+:Read "csv_file" parameter;
+
+if (csv_file parameter provided?) then (yes)
+    :Use provided CSV path;
+else (no)
+    :Use ament_index_cpp to find\npackage share directory;
+    :Construct default CSV path:\nshare/drone_controller/config/letters_AZ_cad.csv;
+endif
+
+:Load CSV file;
+
+:GetGoalsForLetter(first_letter, csv_path);
+
+:Parse CSV and extract waypoints\nfor first letter;
+
 :Initialize Orchestrator with\ninitial drone positions;
 
+:Set goals in Orchestrator\n(nearest-neighbor assignment);
+
+if (record_bag == true?) then (yes)
+    :Start ROS2 bag recorder;
+    :Configure to exclude camera\nand compass topics;
+endif
+
 repeat
-    :Read GPS positions from all drones;
-    :Read velocities from all drones;
-    :Update Orchestrator with positions/velocities;
-    :Set current goals in Orchestrator;
+    :Timer fires (8ms = 125Hz);
+    
+    :Read GPS positions from all drones\n(via ROS2 callbacks);
+    
+    :Read velocities from all drones\n(via ROS2 callbacks);
+    
+    :Update Orchestrator with\ncurrent positions and velocities;
     
     :Calculate preferred velocities;
     note right
         For each drone:
         - Compute vector to goal
-        - Normalize if distance > 1.0
+        - Normalize if distance > 1.0m
         - Set as preferred velocity
     end note
     
@@ -36,11 +69,12 @@ repeat
         - Consider neighbors within radius
         - Compute collision-free velocities
         - Ensure max speed constraints
+        - Guarantee safety within time horizon
     end note
     
     :Get new velocities from Orchestrator;
     
-    :Check if all drones reached goals;
+    :Check if all drones reached goals\n(within threshold distance);
     
     if (All drones at goals?) then (yes)
         :Publish zero velocity to all drones;
@@ -48,22 +82,30 @@ repeat
         
         if (More letters?) then (yes)
             :Get next letter from queue;
-            :Load goals for next letter\nfrom CSV using GetGoalsForLetter();
-            :Set new goals in Orchestrator;
+            :Load goals for next letter from CSV;
+            :Set new goals in Orchestrator\n(nearest-neighbor assignment);
         else (no)
             :All letters completed;
             stop
         endif
     else (no)
+        :Convert RVO::Vector3 to Twist messages;
         :Publish new velocities to all drones;
         :MavicDriver receives cmd_vel;
+        :Update target_twist;
+        :Compute PID control outputs;
         :Update propeller speeds;
         :Read sensors (GPS, IMU, Gyro);
-        :Publish updated sensor data;
+        :Publish updated sensor data to topics;
     endif
     
 repeat while (System running?) is (yes)
 ->no;
+
+if (Bag recording active?) then (yes)
+    :Stop bag recording;
+    :Save bag to results/ directory;
+endif
 
 stop
 

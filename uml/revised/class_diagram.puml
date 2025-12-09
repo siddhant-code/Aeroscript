@@ -4,12 +4,12 @@ skinparam classAttributeIconSize 0
 
 package "drone_orchestrator" {
   class Orchestrator {
-    - RVO::RVOSimulator* simulator
-    - size_t numDrones
-    - std::vector<RVO::Vector3> dronePreferredVelocities
-    - std::vector<RVO::Vector3> droneGoals
+    - RVO::RVOSimulator* simulator_
+    - size_t num_drones_
+    - std::vector<RVO::Vector3> drone_preferred_velocities_
+    - std::vector<RVO::Vector3> drone_goals_
     --
-    + Orchestrator(initial_pos, timeStep, neighborDist, maxNeighbors, timeHorizon, radius, maxSpeed)
+    + Orchestrator(initialPos, timeStep, neighborDist, maxNeighbors, timeHorizon, radius, maxSpeed)
     + SetWebotDronePositionsAndVelocities(positions, velocities) : void
     + SetWebotPrefferedVelocities() : void
     + SetWebotDroneGoals(goals) : void
@@ -75,22 +75,28 @@ package "drone_controller" {
 
 package "mavic_simulation" {
   class MavicDriver {
-    - robot
-    - timestep
-    - gps
-    - gyro
-    - imu
-    - propellers[4]
-    - target_twist : Twist
-    - vertical_ref : float
-    - linear_x_integral : float
-    - linear_y_integral : float
-    - node : rclpy.Node
+    - rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_subscription_
+    - geometry_msgs::msg::Twist target_twist
+    - std::array<WbDeviceTag, 4> propellers
+    - WbDeviceTag gps
+    - WbDeviceTag imu
+    - WbDeviceTag gyro
+    - float vertical_ref
+    - float linear_x_integral
+    - float linear_y_integral
+    - int timestep
+    - std::string name
     --
-    + init(webots_node, properties) : void
+    + init(node, parameters) : void
     + step() : void
-    - __cmd_vel_callback(twist) : void
   }
+  
+  class "webots_ros2_driver::PluginInterface" {
+    + init(node, parameters) : void
+    + step() : void
+  }
+  
+  MavicDriver --|> "webots_ros2_driver::PluginInterface" : implements
 }
 
 package "ROS2 Messages" {
@@ -110,8 +116,10 @@ package "ROS2 Messages" {
     + angular : Vector3
   }
   
-  class "std_msgs::msg::String" {
-    + data : string
+  class "geometry_msgs::msg::Point" {
+    + x : float
+    + y : float
+    + z : float
   }
 }
 
@@ -138,34 +146,24 @@ package "ROS2 Core" {
   }
 }
 
-package "Test Utilities" {
-  class "test_utils" <<namespace>> {
-    + createTestPositions(num_drones, spacing) : std::vector<RVO::Vector3>
-    + createTestGoals(num_drones, offset) : std::vector<RVO::Vector3>
-    + toPointStamped(pos, drone_id) : PointStamped
-    + toVector3Msg(vel) : Vector3
-    + positionsClose(pos1, pos2, threshold) : bool
-    + distance(pos1, pos2) : float
-  }
-  
-  class "HelperFunctionsTest" {
-    - test_csv_path : std::string
-    + SetUp() : void
-    + TearDown() : void
-  }
-}
-
 DroneManager --|> "rclcpp::Node" : extends
 DroneManager --> "geometry_msgs::msg::PointStamped" : subscribes
 DroneManager --> "geometry_msgs::msg::Vector3" : subscribes
 DroneManager --> "geometry_msgs::msg::Twist" : publishes
 MavicDriver --> "geometry_msgs::msg::Twist" : subscribes
-"HelperFunctionsTest" ..> "GetGoalsForLetter" : tests
 
 note right of Orchestrator
   Uses RVO (Reciprocal Velocity Obstacles)
   algorithm for multi-agent path planning
-  and collision avoidance
+  and collision avoidance.
+  
+  Default parameters:
+  - timeStep: 0.008s (125Hz)
+  - neighborDist: 3.0m
+  - maxNeighbors: 20
+  - timeHorizon: 3.5s
+  - radius: 0.4m
+  - maxSpeed: 0.5 m/s
 end note
 
 note right of DroneManager
@@ -174,14 +172,17 @@ note right of DroneManager
   - Uses Orchestrator for path planning
   - Publishes velocity commands
   - Handles letter writing sequence
-  - Reads text parameter from launch file
-  - Loads CSV file for letter goals
+  - Manages CSV file loading
+  - 8ms timer (125Hz control loop)
 end note
 
-note right of "GetGoalsForLetter"
-  Standalone function for parsing
-  CSV file and extracting goals
-  for a specific letter
+note right of MavicDriver
+  C++ Webots plugin that:
+  - Controls individual drone
+  - Reads sensors (GPS, IMU, Gyro)
+  - Controls 4 propellers
+  - Implements PID control
+  - Publishes sensor data
 end note
 
 @enduml

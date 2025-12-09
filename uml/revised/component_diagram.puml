@@ -13,14 +13,14 @@ package "drone_orchestrator" {
 }
 
 package "drone_controller" {
-  component [mavic_controller\n(DroneManager)] as MAVIC_CTRL
-  component [Unit Tests\n(helper_functions_test)] as UNIT_TEST
-  component [Integration Tests\n(subscriber_integration_test)] as INT_TEST
+  component [mavic_controller\nExecutable] as CONTROLLER
+  component [Integration Tests] as INT_TEST
+  component [Helper Functions Test] as HELPER_TEST
   component [CSV Config] as CSV_CONFIG
 }
 
 package "mavic_simulation" {
-  component [MavicDriver] as DRIVER
+  component [MavicDriver\n(C++ Plugin)] as DRIVER
   component [robot_launch.py] as LAUNCH
   component [URDF Model] as URDF
   component [World Generator] as WORLD_GEN
@@ -29,14 +29,12 @@ package "mavic_simulation" {
 package "ROS2 Infrastructure" {
   component [ROS2 DDS] as DDS
   database "Topics" {
-    [GPS Topics] as GPS_TOPIC
-    [Velocity Topics] as VEL_TOPIC
-    [Command Topics] as CMD_TOPIC
+    [GPS Topics\n/Mavic_2_PRO_*/gps] as GPS_TOPIC
+    [Velocity Topics\n/Mavic_2_PRO_*/gps/speed_vector] as VEL_TOPIC
+    [Command Topics\n/Mavic_2_PRO_*/cmd_vel] as CMD_TOPIC
   }
-  component [Parameters] as PARAMS {
-    [text parameter] as TEXT_PARAM
-    [csv_file parameter] as CSV_PARAM
-  }
+  component [ROS2 Parameters] as PARAMS
+  component [ROS2 Bag Recorder] as BAG_REC
 }
 
 package "Simulation" {
@@ -44,59 +42,73 @@ package "Simulation" {
 }
 
 ORCH_LIB ..> ORCH_API : provides
-MAVIC_CTRL --> ORCH_API : uses
-MAVIC_CTRL --> GPS_TOPIC : subscribes
-MAVIC_CTRL --> VEL_TOPIC : subscribes
-MAVIC_CTRL --> CMD_TOPIC : publishes
-MAVIC_CTRL --> PARAMS : reads
-MAVIC_CTRL --> CSV_CONFIG : reads
+CONTROLLER --> ORCH_API : uses
+CONTROLLER --> GPS_TOPIC : subscribes
+CONTROLLER --> VEL_TOPIC : subscribes
+CONTROLLER --> CMD_TOPIC : publishes
+CONTROLLER --> CSV_CONFIG : reads
+CONTROLLER --> PARAMS : reads
 DRIVER --> CMD_TOPIC : subscribes
 DRIVER --> GPS_TOPIC : publishes
 DRIVER --> VEL_TOPIC : publishes
 DRIVER --> WEBOTS : controls
 LAUNCH --> DRIVER : launches
 LAUNCH --> WEBOTS : launches
-LAUNCH --> MAVIC_CTRL : launches
-LAUNCH --> PARAMS : sets
-LAUNCH --> WORLD_GEN : calls
-WORLD_GEN --> WEBOTS : generates world
+LAUNCH --> WORLD_GEN : uses
+LAUNCH --> BAG_REC : optionally starts
+LAUNCH --> CONTROLLER : launches
 URDF --> WEBOTS : defines model
 
 ORCH_TEST --> ORCH_LIB : tests
-UNIT_TEST --> CSV_CONFIG : tests
-INT_TEST --> MAVIC_CTRL : tests
+INT_TEST --> CONTROLLER : tests
+HELPER_TEST --> CSV_CONFIG : tests
 
 CMAKE --> ORCH_LIB : builds
-COLCON --> MAVIC_CTRL : builds
+COLCON --> CONTROLLER : builds
 COLCON --> DRIVER : builds
 
 DDS --> GPS_TOPIC : manages
 DDS --> VEL_TOPIC : manages
 DDS --> CMD_TOPIC : manages
+DDS --> PARAMS : manages
 
 note right of ORCH_LIB
   Stand-alone C++ library
   Uses RVO3D for path planning
+  No ROS2 dependencies
 end note
 
-note right of MAVIC_CTRL
-  Main control node (DroneManager)
+note right of CONTROLLER
+  Main control node
   Coordinates multiple drones
   Handles letter writing sequence
-  Reads text and csv_file parameters
+  Reads CSV file for waypoints
+  Uses ROS2 parameters for configuration
 end note
 
 note right of DRIVER
-  Webots plugin
+  C++ Webots plugin
   Controls individual drone
   Reads sensors, controls propellers
+  Implements PID control
 end note
 
 note right of LAUNCH
   Python launch file
-  Generates world with N drones
-  Sets text and csv_file parameters
-  Default text: "HEY"
+  Generates world dynamically
+  Supports launch arguments:
+  - text (default: "HEY")
+  - record_bag (default: false)
+  - bag_name (default: "aeroscript_bag")
+  - world (default: "updated_world.wbt")
+end note
+
+note right of BAG_REC
+  Optional ROS2 bag recording
+  Records all topics except:
+  - camera topics
+  - compass topics
+  Saves to results/ directory
 end note
 
 @enduml
