@@ -19,7 +19,7 @@
 import os
 import launch
 from launch.substitutions import LaunchConfiguration, PythonExpression, TextSubstitution
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, OpaqueFunction
 from launch.conditions import IfCondition
 from launch.substitutions.path_join_substitution import PathJoinSubstitution
 from launch import LaunchDescription
@@ -28,6 +28,28 @@ from webots_ros2_driver.webots_launcher import WebotsLauncher
 from webots_ros2_driver.webots_controller import WebotsController
 import shutil
 from launch_ros.actions import Node
+
+
+def create_drone_controller_node(context):
+    """Create drone controller node with text parameter converted to string."""
+    pkg_share_dir = get_package_share_directory("drone_controller")
+    csv_path = pkg_share_dir + "/config/letters_AZ_cad.csv"
+    
+    # Get text parameter and convert to string
+    text_value = context.launch_configurations.get("text", "HEY")
+    # Convert to string if it's not already
+    text_str = str(text_value)
+    
+    return [
+        Node(
+            package="drone_controller",
+            executable="mavic_controller",
+            parameters=[
+                {"text": text_str},
+                {"csv_file": csv_path},
+            ],
+        )
+    ]
 
 
 def generate_launch_description():
@@ -162,17 +184,9 @@ def generate_launch_description():
     )
     ld.add_action(sleep)
 
-    pkg_share_dir = get_package_share_directory("drone_controller")
-    csv_path = pkg_share_dir + "/config/letters_AZ_cad.csv"
-    drone_controller = Node(
-        package="drone_controller",
-        executable="mavic_controller",
-        parameters=[
-            {"text": LaunchConfiguration("text")},
-            {"csv_file": LaunchConfiguration("csv_file", default=csv_path)},
-        ],
-    )
-    ld.add_action(drone_controller)
+    # Use OpaqueFunction to process text parameter and ensure it's a string
+    drone_controller_action = OpaqueFunction(function=create_drone_controller_node)
+    ld.add_action(drone_controller_action)
 
     # Get workspace root directory (assuming launch is run from workspace root)
     # Calculate path relative to launch file location
