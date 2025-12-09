@@ -43,7 +43,7 @@ using TIMER = rclcpp::TimerBase::SharedPtr;
  */
 std::vector<RVO::Vector3> GetGoalsForLetter(char letter,
                                             const std::string &csv_path) {
-  letter = std::toupper(letter);
+  //letter = std::toupper(letter);
   std::vector<RVO::Vector3> result;
 
   std::ifstream file(csv_path);
@@ -92,7 +92,7 @@ class DroneManager : public rclcpp::Node {
                 text_to_write_.c_str());
     // Populate the letters queue
     for (char &letter : text_to_write_) {
-      letter = std::toupper(letter);
+      //letter = std::toupper(letter);
       letters_queue_.push(letter);
     }
     this->declare_parameter("csv_file", "");
