@@ -308,9 +308,9 @@ The system has the following dependency structure:
 
 ### CSV File Not Found Error
 
-If you see `Could not open CSV: src/drone_controller/src/letters_AZ_cad.csv`, the listener node is looking for the CSV file in the wrong location. Ensure the CSV file exists at:
+If you see `Could not open CSV: src/drone_controller/config/letters_AZ_cad.csv`, the listener node is looking for the CSV file in the wrong location. Ensure the CSV file exists at:
 ```
-src/drone_controller/src/letters_AZ_cad.csv
+src/drone_controller/config/letters_AZ_cad.csv
 ```
 
 ### RVO3D Not Found
