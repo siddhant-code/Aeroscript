@@ -10,28 +10,20 @@ https://github.com/user-attachments/assets/9c2d9d42-caf5-4f1a-95e9-cd3728ce0f5e
 ## Table of Contents
 
 - [Overview](#overview)
-- [Authors](#authors)
-  - [Phase0](#phase-0)
-  - [Phase1](#phase-1)
+- [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Building the Project](#building-the-project)
 - [Running the System](#running-the-system)
-- [Testing](#testing)
-- [Code Coverage Reports](#code-coverage-reports)
-- [Documentation](#documentation)
-- [Project Structure](#project-structure)
 - [Package Dependencies](#package-dependencies)
 - [Troubleshooting](#troubleshooting)
-- [Continuous Integration](#continuous-integration)
-- [Contributing](#contributing)
+- [Additional Documentation](#additional-documentation)
 - [License](#license)
+- [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
 
 
 ## Overview
-
-
 
 This project implements a **Model-View-Controller (MVC)** architecture for coordinating multiple drones in a Webots simulation environment:
 
@@ -48,56 +40,30 @@ This project implements a **Model-View-Controller (MVC)** architecture for coord
 - **Comprehensive testing** - Unit tests and integration tests with code coverage
 - **Webots simulation** - Physics-based simulation environment
 
-## Authors
+## Project Structure
 
-- Venkata Madhav Tadavarthi (121058768) 
-- Siddhant Deshmukh (121322463)
-
-### Pair Programming
-
-This project is conducted through three phases (Phase 0,1,2) and it involves Pair Programming among the two authors. 
-
-### Phase-0:
-
-[Proposal Documentation](https://drive.google.com/file/d/1hZJovaxEVNSvBYXMtduy1OFAVqnx_SSC/view?usp=sharing)
-
-### Phase-1:
-
-For Model & Controller scripts:
-
-- Siddhant (Driver), Madhav (Navigator)
-
-For UML, Unit Tests and Integration tests:
-
-- Madhav (Driver), Siddhant (Navigator)
-
-#### Deliverables:
-
-- [Phase 1 API Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
-- [Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
-- [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
-
-
-### Phase-2:
-
-- Migrating drone-simulation package from Python to CPP
-- CI/CD Pipeline, Documentations
-
-For Updating Simulation and Code Clean-up:
-
-- Siddhant (Driver), Madhav (Navigator)
-
-For Updating Launch files, commenting, UML, README and documentation:
-
-- Madhav (Driver), Siddhant (Navigator)
-
-
-#### Deliverables:
-
-- [Final Project Presentation](https://www.canva.com/design/DAG69fWCCNk/VfHhR54ad4jJVgpzgXp5ow/edit?utm_content=DAG69fWCCNk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-- [Final Demo Video](https://drive.google.com/drive/folders/1mXGlEku8Zhb4roINdPGhHLFs7enhkt02?usp=sharing)
-- [Updated Sprint Planning Notes](https://docs.google.com/document/d/1JQypbxG2zXJpoj2yMoZUmTPilZsv-7gn79r01ufPY2Q/edit?usp=sharing)
-- [Product Backlog (AIP Sheet)](https://docs.google.com/spreadsheets/d/1-0TgNBRvSWd3us1zfTKismf1ShkWnJXF3nf_c-DSMrs/edit?usp=sharing)
+```
+aeroscript/
+├── src/
+│   ├── drone_orchestrator/     # C++ library (Model)
+│   │   ├── include/            # Header files
+│   │   ├── src/                # Source files
+│   │   ├── test/               # Unit tests
+│   │   └── CMakeLists.txt
+│   ├── drone_controller/       # ROS2 package (Controller)
+│   │   ├── src/                # Node source files
+│   │   ├── test/               # Unit and integration tests
+│   │   ├── launch/             # Launch files
+│   │   └── CMakeLists.txt
+│   ├── mavic_simulation/       # Webots simulation (View)
+│   │   ├── mavic_simulation/   # Python package
+│   │   ├── launch/             # Launch files
+│   │   └── worlds/             # Webots world files
+│   └── uml/                    # UML diagrams
+├── build/                      # Build artifacts
+├── install/                    # Installed packages
+└── README.md                   # This file
+```
 
 
 ## Prerequisites
@@ -220,7 +186,7 @@ ros2 launch mavic_simulation robot_launch.py text:="HI"
 ros2 launch mavic_simulation robot_launch.py text:="HI" record_bag:=true bag_name:=my_test_run
 ```
 
-### 3. ROS2 Bag Recording
+<!-- ### 3. ROS2 Bag Recording
 
 You can record all ROS topics during simulation for later analysis. The bag recording feature:
 
@@ -249,9 +215,9 @@ The bag file will be saved in `results/<bag_name>/` directory. You can replay th
 ros2 bag play results/<bag_name>
 ```
 
-**Note:** Camera topics are excluded from recording by default as they generate large amounts of data. If you need camera data, you can modify the launch file to remove the exclusion filter.
+**Note:** Camera topics are excluded from recording by default as they generate large amounts of data. If you need camera data, you can modify the launch file to remove the exclusion filter. -->
 
-## Testing
+<!-- ## Testing
 
 ### Build Tests with Coverage
 
@@ -299,8 +265,8 @@ source install/setup.bash
 # Integration tests (require ROS2 environment)
 ros2 run drone_controller integration_test
 ros2 run drone_controller subscriber_integration_test
-```
-
+``` -->
+<!-- 
 ## Code Coverage Reports
 
 ### Generate Coverage Reports
@@ -319,89 +285,7 @@ colcon build \
     --cmake-target "test_coverage" \
     --cmake-arg -DUNIT_TEST_ALREADY_RUN=1
 open build/drone_orchestrator/test_coverage/index.html
-```
-
-### Automated Coverage Report (Combined)
-
-Run the automated script that builds, tests, and generates combined coverage:
-
-```bash
-./do-tests-and-coverage.bash
-```
-
-This script:
-1. Builds all packages with coverage enabled
-2. Runs all tests
-3. Generates individual coverage reports
-4. Combines reports into a single HTML report
-5. Opens the combined coverage report in a browser
-
-## Documentation
-
-### Generate Project Documentation
-
-```bash
-./do-docs.bash
-```
-
-This generates Doxygen documentation for all packages.
-
-### View UML Diagrams
-
-UML diagrams are available in `uml/` directory. To regenerate:
-
-```bash
-cd src/uml
-java -jar plantuml.jar -tpng *.puml
-```
-**Initial UML** can be found in `uml/initial/` directory
-**Revised UML** can be found in `uml/revised/` directory
-
-Available diagrams:
-- Class Diagram
-- Activity Diagram
-- Sequence Diagram
-- Component Diagram
-- Dependency Graph
-
-![Class UML](./uml/revised/Class%20Diagram.png)
-![Activity UML](./uml/revised/Activity%20Diagram.png)
-![Sequence UML](./uml/revised/Sequence%20Diagram.png)
-![Component UML](./uml/revised/Component%20Diagram.png)
-![Dependency UML](./uml/revised/Dependency%20Graph.png)
-
-### Generate Dependency Graph
-
-```bash
-colcon graph --dot | dot -Tpng -o depGraph.png
-open depGraph.png
-```
-![depGraph](./depGraph.png)
-
-## Project Structure
-
-```
-aeroscript/
-├── src/
-│   ├── drone_orchestrator/     # C++ library (Model)
-│   │   ├── include/            # Header files
-│   │   ├── src/                # Source files
-│   │   ├── test/               # Unit tests
-│   │   └── CMakeLists.txt
-│   ├── drone_controller/       # ROS2 package (Controller)
-│   │   ├── src/                # Node source files
-│   │   ├── test/               # Unit and integration tests
-│   │   ├── launch/             # Launch files
-│   │   └── CMakeLists.txt
-│   ├── mavic_simulation/       # Webots simulation (View)
-│   │   ├── mavic_simulation/   # Python package
-│   │   ├── launch/             # Launch files
-│   │   └── worlds/             # Webots world files
-│   └── uml/                    # UML diagrams
-├── build/                      # Build artifacts
-├── install/                    # Installed packages
-└── README.md                   # This file
-```
+``` -->
 
 ## Package Dependencies
 
@@ -450,18 +334,56 @@ rm -rf build/ install/ ~/.cmake/packages/drone_orchestrator/
 colcon build --cmake-clean-cache
 ```
 
-## Continuous Integration
+## Additional Documentation
 
-This project includes GitHub Actions CI/CD that:
-- Runs tests on every push to `main` branch
-- Uploads coverage reports to Codecov
-- Builds in a ROS2 Humble container
+Run the automated script that builds, tests, and generates combined coverage:
 
-See `.github/workflows/run-unit-test-and-upload-codecov.yml` for details.
+```bash
+./do-tests-and-coverage.bash
+```
+
+This script:
+1. Builds all packages with coverage enabled
+2. Runs all tests
+3. Generates individual coverage reports
+4. Combines reports into a single HTML report
+5. Opens the combined coverage report in a browser
+
+### Generate Project Documentation
+
+```bash
+./do-docs.bash
+```
+This generates Doxygen documentation for all packages.
+
+### View UML Diagrams
+
+UML diagrams are available in `uml/` directory. To regenerate:
+
+```bash
+cd src/uml
+java -jar plantuml.jar -tpng *.puml
+```
+Available diagrams: Class Diagram, Activity Diagram, Sequence Diagram, Component Diagram, Dependency Graph
+
+### Generate Dependency Graph
+
+```bash
+colcon graph --dot | dot -Tpng -o depGraph.png
+open depGraph.png
+```
+![depGraph](./depGraph.png)
+
+
+### Project Information: [Presentation Slides](https://drive.google.com/file/d/1zNXjDqU1kJnYIX05mbRUnIMJbgrn8LpH/view?usp=sharing)
 
 ## License
 
 This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
+
+## Authors
+
+Venkata Madhav Tadavarthi ([@madhav2133](https://madhav2133.github.io/)) and Siddhant Deshmukh ([@siddhanth](https://github.com/siddhant-code)). This project is conducted through three phases (Phase 0,1,2) and it involves Pair Programming among the two authors. 
 
 ## Acknowledgments
 
@@ -469,3 +391,4 @@ This project is licensed under the Apache 2.0 License - see the LICENSE file for
 - ROS2 Humble: https://docs.ros.org/en/humble/
 - Webots: https://cyberbotics.com/
 - Multi Drone launch: https://github.com/patrickpbarroso/drone-simulation.git
+- Dr. Tommy Chang (Course Instructor - ENPM700), University of Maryland 
